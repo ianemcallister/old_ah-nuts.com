@@ -11,12 +11,24 @@ var port = process.env.PORT || 3000;
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var jsonParser = bodyParser.json();
 
+//tell it the folder to serve
+app.use(express.static('public'));
+
 //connecting middleware
 //app.use('/assets', express.static(__dirname + '/public'));
 
+//my own middleware
+/*app.use('/', function(req, res, next) {
+	//log the url to the console
+	console.log('Request Url: ' + req.url);
+
+	next();
+});*/
+
 //handle HTTP requests, for GET calls
 app.get('/', function(req, res) {
-	//send back html, including middleware
+	
+	//send back html
 	res.send('<html><head></head><body><h1>Hello World!</h1></body></html>');
 
 });
