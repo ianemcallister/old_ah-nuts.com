@@ -1,0 +1,24 @@
+{
+  "name": "ah-nuts.com",
+  "version": "1.0.0",
+  "description": "Form Submissions",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ianemcallister/ah-nuts.com.git"
+  },
+  "author": "Ian McAllister",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ianemcallister/ah-nuts.com/issues"
+  },
+  "homepage": "https://github.com/ianemcallister/ah-nuts.com#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4"
+  }
+}
