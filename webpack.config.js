@@ -7,9 +7,19 @@ module.exports = {
 	resolve: {
 		root: __dirname,
 		alias: {
-			MarketRecieptContainer: 'public/app/components/container/MarketrecieptContainer.jsx',
-			Navbar: 'public/app/components/navbar/navbar.jsx',
-			
+			MarketRecieptContainer: 'public/app/components/container/MarketRecieptContainer.jsx',
+			Navbar: 'public/app/components/navbar/Navbar.jsx',
+			SubmissionForm: 'public/app/components/submissionForm/SubmissionForm.jsx',
+			MarketNameInput: 'public/app/components/marketNameInput/MarketNameInput.jsx',
+			EmployeeNameInput: 'public/app/components/employeeNameInput/EmployeeNameInput.jsx',
+			DateInput: 'public/app/components/dateInput/DateInput.jsx',
+			GrossSalesInput: 'public/app/components/grossSalesInput/GrossSalesInput.jsx',
+			MarketFeeInput: 'public/app/components/marketFeeInput/MarketFeeInput.jsx',
+			EmployeePayInput: 'public/app/components/employeePayInput/EmployeePayInput.jsx',
+			EmployeeExpensesInput: 'public/app/components/employeeExpensesInput/EmployeeExpensesInput.jsx',
+			BankInput: 'public/app/components/bankInput/BankInput.jsx',
+			NetProfitsInput: 'public/app/components/netProfitsInput/NetProfitsInput.jsx',
+			PhotoUploadInput: 'public/app/components/photoUploadInput/PhotoUploadInput.jsx'
 		},
 		extensions: ['','.js','.jsx']
 	},

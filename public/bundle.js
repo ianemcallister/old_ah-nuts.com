@@ -19691,6 +19691,7 @@
 	var React = __webpack_require__(1);
 
 	var Navbar = __webpack_require__(160);
+	var SubmissionForm = __webpack_require__(161);
 
 	//container component
 	var MarketRecieptContainer = React.createClass({
@@ -19701,194 +19702,7 @@
 				'div',
 				null,
 				React.createElement(Navbar, null),
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'marketNameInput' },
-								'Market:'
-							),
-							React.createElement('input', { list: 'marketNameDatalist', id: 'marketNameInput', name: 'marketNameInput' }),
-							React.createElement(
-								'datalist',
-								{ name: 'marketNameDatalist', id: 'marketNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
-								React.createElement(
-									'option',
-									{ value: 'Bixby' },
-									'Bixby'
-								),
-								React.createElement(
-									'option',
-									{ value: 'Great Park' },
-									'Great Park'
-								),
-								React.createElement(
-									'option',
-									{ value: 'Surf Nights' },
-									'Surf Nights'
-								)
-							)
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'employeeNameInput' },
-								'Employee:'
-							),
-							React.createElement('input', { list: 'employeeNameDatalist', id: 'employeeNameInput', name: 'employeeNameInput' }),
-							React.createElement(
-								'datalist',
-								{ name: 'employeeNameDatalist', id: 'employeeNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
-								React.createElement(
-									'option',
-									{ value: 'Kevin Luna' },
-									'Kevin Luna'
-								),
-								React.createElement(
-									'option',
-									{ value: 'Ahmed' },
-									'Ahmed'
-								),
-								React.createElement(
-									'option',
-									{ value: 'Kiley' },
-									'Kiley'
-								)
-							)
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'dateInput' },
-								'Employee:'
-							),
-							React.createElement('input', { type: 'date', id: 'dateInput', name: 'dateInput' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'grossSalesInput' },
-								'Gross Sales:'
-							),
-							React.createElement('input', { type: 'number', id: 'grossSalesInput', name: 'grossSalesInput' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'marketFeeInput' },
-								'Market Fee:'
-							),
-							React.createElement('input', { type: 'number', id: 'marketFeeInput', name: 'marketFeeInput' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'employeePayInput' },
-								'Employee Pay:'
-							),
-							React.createElement('input', { type: 'number', id: 'employeePayInput', name: 'employeePayInput' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'employeeExpensesInput' },
-								'Other Expenses:'
-							),
-							React.createElement('input', { type: 'number', id: 'employeeExpensesInput', name: 'employeeExpensesInput' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'bankInput' },
-								'Bank:'
-							),
-							React.createElement('input', { type: 'number', id: 'bankInput', name: 'bankInput' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement(
-								'label',
-								{ htmlFor: 'returningInput' },
-								'Returning:'
-							),
-							React.createElement('input', { type: 'number', id: 'returningInput', name: 'returningInput' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement('label', { htmlFor: 'photoUploadInput' }),
-							React.createElement('input', { type: 'file', id: 'photoUploadInput', name: 'photoUploadInput', accept: 'image/*' })
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'row' },
-						React.createElement(
-							'div',
-							{ className: 'container' },
-							React.createElement('label', { htmlFor: 'submitButton' }),
-							React.createElement('input', { type: 'submit', id: 'submitButton', name: 'submitButton', value: 'Submit' })
-						)
-					)
-				)
+				React.createElement(SubmissionForm, null)
 			);
 		}
 
@@ -19930,6 +19744,413 @@
 	});
 
 	module.exports = Navbar;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var MarketNameInput = __webpack_require__(162);
+	var EmployeeNameInput = __webpack_require__(163);
+	var DateInput = __webpack_require__(164);
+	var GrossSalesInput = __webpack_require__(165);
+	var MarketFeeInput = __webpack_require__(166);
+	var EmployeePayInput = __webpack_require__(167);
+	var EmployeeExpensesInput = __webpack_require__(168);
+	var BankInput = __webpack_require__(169);
+	var NetProfitsInput = __webpack_require__(170);
+	var PhotoUploadInput = __webpack_require__(171);
+
+	var SubmissionForm = React.createClass({
+		displayName: 'SubmissionForm',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'container' },
+				React.createElement(MarketNameInput, null),
+				React.createElement(EmployeeNameInput, null),
+				React.createElement(DateInput, null),
+				React.createElement(GrossSalesInput, null),
+				React.createElement(MarketFeeInput, null),
+				React.createElement(EmployeePayInput, null),
+				React.createElement(EmployeeExpensesInput, null),
+				React.createElement(BankInput, null),
+				React.createElement(NetProfitsInput, null),
+				React.createElement(PhotoUploadInput, null),
+				React.createElement(
+					'div',
+					{ className: 'row' },
+					React.createElement(
+						'div',
+						{ className: 'container' },
+						React.createElement('label', { htmlFor: 'submitButton' }),
+						React.createElement('input', { type: 'submit', id: 'submitButton', name: 'submitButton', value: 'Submit' })
+					)
+				)
+			);
+		}
+
+	});
+
+	module.exports = SubmissionForm;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var MarketNameInput = React.createClass({
+		displayName: 'MarketNameInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'marketNameInput' },
+						'Market:'
+					),
+					React.createElement('input', { list: 'marketNameDatalist', id: 'marketNameInput', name: 'marketNameInput' }),
+					React.createElement(
+						'datalist',
+						{ name: 'marketNameDatalist', id: 'marketNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
+						React.createElement(
+							'option',
+							{ value: 'Bixby' },
+							'Bixby'
+						),
+						React.createElement(
+							'option',
+							{ value: 'Great Park' },
+							'Great Park'
+						),
+						React.createElement(
+							'option',
+							{ value: 'Surf Nights' },
+							'Surf Nights'
+						)
+					)
+				)
+			);
+		}
+
+	});
+
+	module.exports = MarketNameInput;
+
+/***/ },
+/* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var EmployeeNameInput = React.createClass({
+		displayName: 'EmployeeNameInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'employeeNameInput' },
+						'Employee:'
+					),
+					React.createElement('input', { list: 'employeeNameDatalist', id: 'employeeNameInput', name: 'employeeNameInput' }),
+					React.createElement(
+						'datalist',
+						{ name: 'employeeNameDatalist', id: 'employeeNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
+						React.createElement(
+							'option',
+							{ value: 'Kevin Luna' },
+							'Kevin Luna'
+						),
+						React.createElement(
+							'option',
+							{ value: 'Ahmed' },
+							'Ahmed'
+						),
+						React.createElement(
+							'option',
+							{ value: 'Kiley' },
+							'Kiley'
+						)
+					)
+				)
+			);
+		}
+
+	});
+
+	module.exports = EmployeeNameInput;
+
+/***/ },
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var DateInput = React.createClass({
+		displayName: 'DateInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'dateInput' },
+						'Employee:'
+					),
+					React.createElement('input', { type: 'date', id: 'dateInput', name: 'dateInput' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = DateInput;
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var GrossSalesInput = React.createClass({
+		displayName: 'GrossSalesInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'grossSalesInput' },
+						'Gross Sales:'
+					),
+					React.createElement('input', { type: 'number', id: 'grossSalesInput', name: 'grossSalesInput' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = GrossSalesInput;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var MarketFeeInput = React.createClass({
+		displayName: 'MarketFeeInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'marketFeeInput' },
+						'Market Fee:'
+					),
+					React.createElement('input', { type: 'number', id: 'marketFeeInput', name: 'marketFeeInput' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = MarketFeeInput;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var EmployeePayInput = React.createClass({
+		displayName: 'EmployeePayInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'employeePayInput' },
+						'Employee Pay:'
+					),
+					React.createElement('input', { type: 'number', id: 'employeePayInput', name: 'employeePayInput' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = EmployeePayInput;
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var EmployeeExpensesInput = React.createClass({
+		displayName: 'EmployeeExpensesInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'employeeExpensesInput' },
+						'Other Expenses:'
+					),
+					React.createElement('input', { type: 'number', id: 'employeeExpensesInput', name: 'employeeExpensesInput' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = EmployeeExpensesInput;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var BankInput = React.createClass({
+		displayName: 'BankInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'bankInput' },
+						'Bank:'
+					),
+					React.createElement('input', { type: 'number', id: 'bankInput', name: 'bankInput' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = BankInput;
+
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var NetProfitsInput = React.createClass({
+		displayName: 'NetProfitsInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'returningInput' },
+						'Returning:'
+					),
+					React.createElement('input', { type: 'number', id: 'returningInput', name: 'returningInput' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = NetProfitsInput;
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var PhotoUploadInput = React.createClass({
+		displayName: 'PhotoUploadInput',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement('label', { htmlFor: 'photoUploadInput' }),
+					React.createElement('input', { type: 'file', id: 'photoUploadInput', name: 'photoUploadInput', accept: 'image/*' })
+				)
+			);
+		}
+
+	});
+
+	module.exports = PhotoUploadInput;
 
 /***/ }
 /******/ ]);
