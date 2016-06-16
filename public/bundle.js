@@ -19758,37 +19758,48 @@
 	var DateInput = __webpack_require__(164);
 	var GrossSalesInput = __webpack_require__(165);
 	var MarketFeeInput = __webpack_require__(166);
-	var EmployeePayInput = __webpack_require__(167);
-	var EmployeeExpensesInput = __webpack_require__(168);
-	var BankInput = __webpack_require__(169);
-	var NetProfitsInput = __webpack_require__(170);
-	var PhotoUploadInput = __webpack_require__(171);
+	var EmployeePayInput = __webpack_require__(168);
+	var EmployeeExpensesInput = __webpack_require__(169);
+	var BankInput = __webpack_require__(170);
+	var NetProfitsInput = __webpack_require__(171);
+	var PhotoUploadInput = __webpack_require__(172);
 
 	var SubmissionForm = React.createClass({
 		displayName: 'SubmissionForm',
 
 		render: function render() {
+			var testing = 'this is a test';
+			var guess = this.state.marketGuess;
+
 			return React.createElement(
 				'div',
 				{ className: 'container' },
-				React.createElement(MarketNameInput, null),
-				React.createElement(EmployeeNameInput, null),
-				React.createElement(DateInput, null),
-				React.createElement(GrossSalesInput, null),
-				React.createElement(MarketFeeInput, null),
-				React.createElement(EmployeePayInput, null),
-				React.createElement(EmployeeExpensesInput, null),
-				React.createElement(BankInput, null),
-				React.createElement(NetProfitsInput, null),
-				React.createElement(PhotoUploadInput, null),
 				React.createElement(
-					'div',
-					{ className: 'row' },
+					'form',
+					null,
+					React.createElement(MarketNameInput, null),
+					React.createElement(EmployeeNameInput, null),
+					React.createElement(DateInput, null),
+					React.createElement(GrossSalesInput, null),
+					React.createElement(MarketFeeInput, null),
+					React.createElement(EmployeePayInput, null),
+					React.createElement(EmployeeExpensesInput, null),
+					React.createElement(BankInput, null),
+					React.createElement(NetProfitsInput, null),
+					React.createElement(PhotoUploadInput, null),
 					React.createElement(
 						'div',
-						{ className: 'container' },
-						React.createElement('label', { htmlFor: 'submitButton' }),
-						React.createElement('input', { type: 'submit', id: 'submitButton', name: 'submitButton', value: 'Submit' })
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'container' },
+							React.createElement(
+								'div',
+								{ className: 'col-xs-12 col-sm-12 col-md-12' },
+								React.createElement('label', { htmlFor: 'submitButton' }),
+								React.createElement('input', { type: 'submit', id: 'submitButton', name: 'submitButton', value: 'Submit' })
+							)
+						)
 					)
 				)
 			);
@@ -19806,10 +19817,14 @@
 
 	var React = __webpack_require__(1);
 
+	var ApprovalButton = __webpack_require__(167);
+
 	var MarketNameInput = React.createClass({
 		displayName: 'MarketNameInput',
 
 		render: function render() {
+			var guess = this.props.guess;
+
 			return React.createElement(
 				'div',
 				{ className: 'row' },
@@ -19817,29 +19832,38 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'marketNameInput' },
-						'Market:'
-					),
-					React.createElement('input', { list: 'marketNameDatalist', id: 'marketNameInput', name: 'marketNameInput' }),
-					React.createElement(
-						'datalist',
-						{ name: 'marketNameDatalist', id: 'marketNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
 						React.createElement(
-							'option',
-							{ value: 'Bixby' },
-							'Bixby'
+							'label',
+							{ htmlFor: 'marketNameInput' },
+							'Market:'
 						),
+						React.createElement('input', { list: 'marketNameDatalist', id: 'marketNameInput', name: 'marketNameInput', placeholder: guess }),
 						React.createElement(
-							'option',
-							{ value: 'Great Park' },
-							'Great Park'
-						),
-						React.createElement(
-							'option',
-							{ value: 'Surf Nights' },
-							'Surf Nights'
+							'datalist',
+							{ name: 'marketNameDatalist', id: 'marketNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
+							React.createElement(
+								'option',
+								{ value: 'Bixby' },
+								'Bixby'
+							),
+							React.createElement(
+								'option',
+								{ value: 'Great Park' },
+								'Great Park'
+							),
+							React.createElement(
+								'option',
+								{ value: 'Surf Nights' },
+								'Surf Nights'
+							)
 						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
 					)
 				)
 			);
@@ -19857,6 +19881,8 @@
 
 	var React = __webpack_require__(1);
 
+	var ApprovalButton = __webpack_require__(167);
+
 	var EmployeeNameInput = React.createClass({
 		displayName: 'EmployeeNameInput',
 
@@ -19868,29 +19894,38 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'employeeNameInput' },
-						'Employee:'
-					),
-					React.createElement('input', { list: 'employeeNameDatalist', id: 'employeeNameInput', name: 'employeeNameInput' }),
-					React.createElement(
-						'datalist',
-						{ name: 'employeeNameDatalist', id: 'employeeNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
 						React.createElement(
-							'option',
-							{ value: 'Kevin Luna' },
-							'Kevin Luna'
+							'label',
+							{ htmlFor: 'employeeNameInput' },
+							'Employee:'
 						),
+						React.createElement('input', { list: 'employeeNameDatalist', id: 'employeeNameInput', name: 'employeeNameInput' }),
 						React.createElement(
-							'option',
-							{ value: 'Ahmed' },
-							'Ahmed'
-						),
-						React.createElement(
-							'option',
-							{ value: 'Kiley' },
-							'Kiley'
+							'datalist',
+							{ name: 'employeeNameDatalist', id: 'employeeNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
+							React.createElement(
+								'option',
+								{ value: 'Kevin Luna' },
+								'Kevin Luna'
+							),
+							React.createElement(
+								'option',
+								{ value: 'Ahmed' },
+								'Ahmed'
+							),
+							React.createElement(
+								'option',
+								{ value: 'Kiley' },
+								'Kiley'
+							)
 						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
 					)
 				)
 			);
@@ -19908,6 +19943,8 @@
 
 	var React = __webpack_require__(1);
 
+	var ApprovalButton = __webpack_require__(167);
+
 	var DateInput = React.createClass({
 		displayName: 'DateInput',
 
@@ -19919,11 +19956,20 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'dateInput' },
-						'Employee:'
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'dateInput' },
+							'Employee:'
+						),
+						React.createElement('input', { type: 'date', id: 'dateInput', name: 'dateInput' })
 					),
-					React.createElement('input', { type: 'date', id: 'dateInput', name: 'dateInput' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
@@ -19940,6 +19986,8 @@
 
 	var React = __webpack_require__(1);
 
+	var ApprovalButton = __webpack_require__(167);
+
 	var GrossSalesInput = React.createClass({
 		displayName: 'GrossSalesInput',
 
@@ -19951,11 +19999,20 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'grossSalesInput' },
-						'Gross Sales:'
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'grossSalesInput' },
+							'Gross Sales:'
+						),
+						React.createElement('input', { type: 'number', id: 'grossSalesInput', name: 'grossSalesInput' })
 					),
-					React.createElement('input', { type: 'number', id: 'grossSalesInput', name: 'grossSalesInput' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
@@ -19972,6 +20029,8 @@
 
 	var React = __webpack_require__(1);
 
+	var ApprovalButton = __webpack_require__(167);
+
 	var MarketFeeInput = React.createClass({
 		displayName: 'MarketFeeInput',
 
@@ -19983,11 +20042,20 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'marketFeeInput' },
-						'Market Fee:'
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'marketFeeInput' },
+							'Market Fee:'
+						),
+						React.createElement('input', { type: 'number', id: 'marketFeeInput', name: 'marketFeeInput' })
 					),
-					React.createElement('input', { type: 'number', id: 'marketFeeInput', name: 'marketFeeInput' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
@@ -20004,6 +20072,35 @@
 
 	var React = __webpack_require__(1);
 
+	var ApprovalButton = React.createClass({
+		displayName: 'ApprovalButton',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'button',
+					{ classname: 'btn btn-warning' },
+					'Approve'
+				)
+			);
+		}
+
+	});
+
+	module.exports = ApprovalButton;
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var ApprovalButton = __webpack_require__(167);
+
 	var EmployeePayInput = React.createClass({
 		displayName: 'EmployeePayInput',
 
@@ -20015,11 +20112,20 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'employeePayInput' },
-						'Employee Pay:'
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'employeePayInput' },
+							'Employee Pay:'
+						),
+						React.createElement('input', { type: 'number', id: 'employeePayInput', name: 'employeePayInput' })
 					),
-					React.createElement('input', { type: 'number', id: 'employeePayInput', name: 'employeePayInput' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
@@ -20029,12 +20135,14 @@
 	module.exports = EmployeePayInput;
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
+
+	var ApprovalButton = __webpack_require__(167);
 
 	var EmployeeExpensesInput = React.createClass({
 		displayName: 'EmployeeExpensesInput',
@@ -20047,11 +20155,20 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'employeeExpensesInput' },
-						'Other Expenses:'
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'employeeExpensesInput' },
+							'Other Expenses:'
+						),
+						React.createElement('input', { type: 'number', id: 'employeeExpensesInput', name: 'employeeExpensesInput' })
 					),
-					React.createElement('input', { type: 'number', id: 'employeeExpensesInput', name: 'employeeExpensesInput' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
@@ -20061,12 +20178,14 @@
 	module.exports = EmployeeExpensesInput;
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
+
+	var ApprovalButton = __webpack_require__(167);
 
 	var BankInput = React.createClass({
 		displayName: 'BankInput',
@@ -20079,11 +20198,20 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'bankInput' },
-						'Bank:'
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'bankInput' },
+							'Bank:'
+						),
+						React.createElement('input', { type: 'number', id: 'bankInput', name: 'bankInput' })
 					),
-					React.createElement('input', { type: 'number', id: 'bankInput', name: 'bankInput' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
@@ -20093,12 +20221,14 @@
 	module.exports = BankInput;
 
 /***/ },
-/* 170 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
+
+	var ApprovalButton = __webpack_require__(167);
 
 	var NetProfitsInput = React.createClass({
 		displayName: 'NetProfitsInput',
@@ -20111,11 +20241,20 @@
 					'div',
 					{ className: 'container' },
 					React.createElement(
-						'label',
-						{ htmlFor: 'returningInput' },
-						'Returning:'
+						'div',
+						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'returningInput' },
+							'Returning:'
+						),
+						React.createElement('input', { type: 'number', id: 'returningInput', name: 'returningInput' })
 					),
-					React.createElement('input', { type: 'number', id: 'returningInput', name: 'returningInput' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-3 col-sm-3 col-md-3' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
@@ -20125,7 +20264,7 @@
 	module.exports = NetProfitsInput;
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20142,8 +20281,12 @@
 				React.createElement(
 					'div',
 					{ className: 'container' },
-					React.createElement('label', { htmlFor: 'photoUploadInput' }),
-					React.createElement('input', { type: 'file', id: 'photoUploadInput', name: 'photoUploadInput', accept: 'image/*' })
+					React.createElement(
+						'div',
+						{ className: 'col-xs-12 col-sm-12 col-md-12' },
+						React.createElement('label', { htmlFor: 'photoUploadInput' }),
+						React.createElement('input', { type: 'file', id: 'photoUploadInput', name: 'photoUploadInput', accept: 'image/*' })
+					)
 				)
 			);
 		}
