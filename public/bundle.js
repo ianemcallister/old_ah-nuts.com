@@ -19754,10 +19754,10 @@
 	var React = __webpack_require__(1);
 
 	var MarketNameInput = __webpack_require__(162);
-	var EmployeeNameInput = __webpack_require__(163);
-	var DateInput = __webpack_require__(164);
-	var GrossSalesInput = __webpack_require__(165);
-	var MarketFeeInput = __webpack_require__(166);
+	var EmployeeNameInput = __webpack_require__(164);
+	var DateInput = __webpack_require__(165);
+	var GrossSalesInput = __webpack_require__(166);
+	var MarketFeeInput = __webpack_require__(167);
 	var EmployeePayInput = __webpack_require__(168);
 	var EmployeeExpensesInput = __webpack_require__(169);
 	var BankInput = __webpack_require__(170);
@@ -19769,7 +19769,6 @@
 
 		render: function render() {
 			var testing = 'this is a test';
-			var guess = this.state.marketGuess;
 
 			return React.createElement(
 				'div',
@@ -19817,13 +19816,12 @@
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var MarketNameInput = React.createClass({
 		displayName: 'MarketNameInput',
 
 		render: function render() {
-			var guess = this.props.guess;
 
 			return React.createElement(
 				'div',
@@ -19839,7 +19837,7 @@
 							{ htmlFor: 'marketNameInput' },
 							'Market:'
 						),
-						React.createElement('input', { list: 'marketNameDatalist', id: 'marketNameInput', name: 'marketNameInput', placeholder: guess }),
+						React.createElement('input', { list: 'marketNameDatalist', id: 'marketNameInput', name: 'marketNameInput', placeholder: '' }),
 						React.createElement(
 							'datalist',
 							{ name: 'marketNameDatalist', id: 'marketNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
@@ -19881,7 +19879,34 @@
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = React.createClass({
+		displayName: 'ApprovalButton',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'button',
+					{ classname: 'btn btn-warning' },
+					'Approve'
+				)
+			);
+		}
+
+	});
+
+	module.exports = ApprovalButton;
+
+/***/ },
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var ApprovalButton = __webpack_require__(163);
 
 	var EmployeeNameInput = React.createClass({
 		displayName: 'EmployeeNameInput',
@@ -19936,14 +19961,14 @@
 	module.exports = EmployeeNameInput;
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var DateInput = React.createClass({
 		displayName: 'DateInput',
@@ -19979,14 +20004,14 @@
 	module.exports = DateInput;
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var GrossSalesInput = React.createClass({
 		displayName: 'GrossSalesInput',
@@ -20022,14 +20047,14 @@
 	module.exports = GrossSalesInput;
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var MarketFeeInput = React.createClass({
 		displayName: 'MarketFeeInput',
@@ -20065,33 +20090,6 @@
 	module.exports = MarketFeeInput;
 
 /***/ },
-/* 167 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = React.createClass({
-		displayName: 'ApprovalButton',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'button',
-					{ classname: 'btn btn-warning' },
-					'Approve'
-				)
-			);
-		}
-
-	});
-
-	module.exports = ApprovalButton;
-
-/***/ },
 /* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -20099,7 +20097,7 @@
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var EmployeePayInput = React.createClass({
 		displayName: 'EmployeePayInput',
@@ -20142,7 +20140,7 @@
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var EmployeeExpensesInput = React.createClass({
 		displayName: 'EmployeeExpensesInput',
@@ -20185,7 +20183,7 @@
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var BankInput = React.createClass({
 		displayName: 'BankInput',
@@ -20228,7 +20226,7 @@
 
 	var React = __webpack_require__(1);
 
-	var ApprovalButton = __webpack_require__(167);
+	var ApprovalButton = __webpack_require__(163);
 
 	var NetProfitsInput = React.createClass({
 		displayName: 'NetProfitsInput',

@@ -14,7 +14,6 @@ var PhotoUploadInput = require('PhotoUploadInput');
 var SubmissionForm = React.createClass({
 	render: function() {
 		var testing = 'this is a test';
-		var guess = this.state.marketGuess;
 
 		return (
 			<div className="container">
