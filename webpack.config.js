@@ -20,7 +20,8 @@ module.exports = {
 			BankInput: 'public/app/components/bankInput/BankInput.jsx',
 			NetProfitsInput: 'public/app/components/netProfitsInput/NetProfitsInput.jsx',
 			PhotoUploadInput: 'public/app/components/photoUploadInput/PhotoUploadInput.jsx',
-			ApprovalButton: 'public/app/components/approvalButton/ApprovalButton.jsx'
+			ApprovalButton: 'public/app/components/approvalButton/ApprovalButton.jsx',
+			ReportLineItem: 'public/app/components/reportLineItem/ReportLineItem.jsx'
 		},
 		extensions: ['','.js','.jsx']
 	},

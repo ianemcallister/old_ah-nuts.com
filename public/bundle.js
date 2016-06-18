@@ -19753,39 +19753,97 @@
 
 	var React = __webpack_require__(1);
 
-	var MarketNameInput = __webpack_require__(162);
-	var EmployeeNameInput = __webpack_require__(164);
-	var DateInput = __webpack_require__(165);
-	var GrossSalesInput = __webpack_require__(166);
-	var MarketFeeInput = __webpack_require__(167);
-	var EmployeePayInput = __webpack_require__(168);
-	var EmployeeExpensesInput = __webpack_require__(169);
-	var BankInput = __webpack_require__(170);
-	var NetProfitsInput = __webpack_require__(171);
-	var PhotoUploadInput = __webpack_require__(172);
+	/*var MarketNameInput = require('MarketNameInput');
+	var EmployeeNameInput = require('EmployeeNameInput');
+	var DateInput = require('DateInput');
+	var GrossSalesInput = require('GrossSalesInput');
+	var MarketFeeInput = require('MarketFeeInput');
+	var EmployeePayInput = require('EmployeePayInput');
+	var EmployeeExpensesInput = require('EmployeeExpensesInput');
+	var BankInput = require('BankInput');
+	var NetProfitsInput = require('NetProfitsInput');
+	var PhotoUploadInput = require('PhotoUploadInput');*/
+	var ReportLineItem = __webpack_require__(162);
 
 	var SubmissionForm = React.createClass({
 		displayName: 'SubmissionForm',
 
+		getDefaultProps: function getDefaultProps() {
+			return { items: [{ fieldName: 'Market' }, { fieldName: 'Employee' }, { fieldName: 'Gross Sales' }, { fieldName: 'Market Fee' }, { fieldName: 'Employee Pay' }, { fieldName: 'Employee\'s Expenses' }, { fieldName: 'Starting Bank' }, { fieldName: 'Due to Ah-Nuts' }]
+			};
+		},
+		getRecipetItems: function getRecipetItems(marketCorrection) {
+			//if a marketCorrection value is provided use that, otherwise
+			//server will guess
+			//
+			//if I can, collect GPS location data
+			//call the server (possbily passing GPS location data)
+			//from the server get the following:
+			//   *Market Name Guess
+			//   *Employee Guess
+			//   *Gross sales (with details) based on guessed Market
+			//   *Market fee (with details) based on guessed Market
+			//   *Employee pay (with details) based on guessed marget and guessed employee
+			//   *Employee expenses (with details) based on guessed employee expense reports
+			//   *Bank value based on guessed employee profile
+			//   *Net Profit value based on guesed market
+		},
+		approveField: function approveField(field) {
+			//as the user gives feedback on each item act accordingly
+			//if a field is approved, kick off subsequent calculations
+			//if a field is not approved.....
+		},
+		revizeFieldValue: function revizeFieldValue(field, value) {
+			//if the suggested field value is not accepted
+			//MarketName - re-run getRecipetItems with inputed value
+			//Employee Name - prompt for explaination
+			//Date - prompt for explaination
+			//Gross - prompt for explaination
+			//Market Fee - prompt for explaination
+			//Employee Pay - prompt for explaination
+			//Employee Expenses - prompt for explaination
+			//Bank - prompt for explaination
+			//Net Profit - prompt for explaination
+		},
+		getCurrentDate: function getCurrentDate() {
+			//from the current browser/device
+			//return the value
+		},
+		launchExplainationPrompt: function launchExplainationPrompt(inputItem) {
+			//when a field is revized, this function prompts the component to
+			//display an explaination field
+		},
+		launchErrorPrompt: function launchErrorPrompt(inputItem) {
+			//notify user that an error occured with a specific field
+		},
 		render: function render() {
 			var testing = 'this is a test';
+
+			var listItems = this.props.items.map(function (item) {
+
+				return React.createElement(
+					'li',
+					null,
+					React.createElement(ReportLineItem, { values: item })
+				);
+			});
 
 			return React.createElement(
 				'div',
 				{ className: 'container' },
 				React.createElement(
+					'p',
+					null,
+					'*Swipe a field left if not approving'
+				),
+				React.createElement(
 					'form',
 					null,
-					React.createElement(MarketNameInput, null),
-					React.createElement(EmployeeNameInput, null),
-					React.createElement(DateInput, null),
-					React.createElement(GrossSalesInput, null),
-					React.createElement(MarketFeeInput, null),
-					React.createElement(EmployeePayInput, null),
-					React.createElement(EmployeeExpensesInput, null),
-					React.createElement(BankInput, null),
-					React.createElement(NetProfitsInput, null),
-					React.createElement(PhotoUploadInput, null),
+					React.createElement(
+						'ul',
+						null,
+						listItems
+					),
 					React.createElement(
 						'div',
 						{ className: 'row' },
@@ -19818,58 +19876,51 @@
 
 	var ApprovalButton = __webpack_require__(163);
 
-	var MarketNameInput = React.createClass({
-		displayName: 'MarketNameInput',
+	var ReportLineItem = React.createClass({
+		displayName: 'ReportLineItem',
 
+		getDefaultProps: function getDefaultProps() {
+			return {
+				//values: this.props.values
+				values: 'error'
+			};
+		},
+		getInitialState: function getInitialState() {
+			return {
+				values: this.props.values
+			};
+		},
 		render: function render() {
+			var values = this.state.values;
 
 			return React.createElement(
 				'div',
-				{ className: 'row' },
+				null,
 				React.createElement(
 					'div',
-					{ className: 'container' },
+					{ className: 'col-xs-9 col-sm-9 col-md-9' },
 					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
+						'label',
+						{ htmlFor: 'bankInput' },
 						React.createElement(
-							'label',
-							{ htmlFor: 'marketNameInput' },
-							'Market:'
-						),
-						React.createElement('input', { list: 'marketNameDatalist', id: 'marketNameInput', name: 'marketNameInput', placeholder: '' }),
-						React.createElement(
-							'datalist',
-							{ name: 'marketNameDatalist', id: 'marketNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
-							React.createElement(
-								'option',
-								{ value: 'Bixby' },
-								'Bixby'
-							),
-							React.createElement(
-								'option',
-								{ value: 'Great Park' },
-								'Great Park'
-							),
-							React.createElement(
-								'option',
-								{ value: 'Surf Nights' },
-								'Surf Nights'
-							)
+							'span',
+							null,
+							values.fieldName,
+							':'
 						)
 					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
+					React.createElement('input', { type: 'number', id: 'bankInput', name: 'bankInput', className: 'col-xs-8 col-sm-8 col-md-8 pull-right' })
+				),
+				React.createElement(
+					'div',
+					{ className: 'col-xs-3 col-sm-3 col-md-3' },
+					React.createElement(ApprovalButton, null)
 				)
 			);
 		}
-
 	});
 
-	module.exports = MarketNameInput;
+	module.exports = ReportLineItem;
 
 /***/ },
 /* 163 */
@@ -19888,7 +19939,7 @@
 				null,
 				React.createElement(
 					'button',
-					{ classname: 'btn btn-warning' },
+					{ className: 'btn btn-warning' },
 					'Approve'
 				)
 			);
@@ -19897,401 +19948,6 @@
 	});
 
 	module.exports = ApprovalButton;
-
-/***/ },
-/* 164 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var EmployeeNameInput = React.createClass({
-		displayName: 'EmployeeNameInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'employeeNameInput' },
-							'Employee:'
-						),
-						React.createElement('input', { list: 'employeeNameDatalist', id: 'employeeNameInput', name: 'employeeNameInput' }),
-						React.createElement(
-							'datalist',
-							{ name: 'employeeNameDatalist', id: 'employeeNameDatalist', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
-							React.createElement(
-								'option',
-								{ value: 'Kevin Luna' },
-								'Kevin Luna'
-							),
-							React.createElement(
-								'option',
-								{ value: 'Ahmed' },
-								'Ahmed'
-							),
-							React.createElement(
-								'option',
-								{ value: 'Kiley' },
-								'Kiley'
-							)
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = EmployeeNameInput;
-
-/***/ },
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var DateInput = React.createClass({
-		displayName: 'DateInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'dateInput' },
-							'Employee:'
-						),
-						React.createElement('input', { type: 'date', id: 'dateInput', name: 'dateInput' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = DateInput;
-
-/***/ },
-/* 166 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var GrossSalesInput = React.createClass({
-		displayName: 'GrossSalesInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'grossSalesInput' },
-							'Gross Sales:'
-						),
-						React.createElement('input', { type: 'number', id: 'grossSalesInput', name: 'grossSalesInput' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = GrossSalesInput;
-
-/***/ },
-/* 167 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var MarketFeeInput = React.createClass({
-		displayName: 'MarketFeeInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'marketFeeInput' },
-							'Market Fee:'
-						),
-						React.createElement('input', { type: 'number', id: 'marketFeeInput', name: 'marketFeeInput' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = MarketFeeInput;
-
-/***/ },
-/* 168 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var EmployeePayInput = React.createClass({
-		displayName: 'EmployeePayInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'employeePayInput' },
-							'Employee Pay:'
-						),
-						React.createElement('input', { type: 'number', id: 'employeePayInput', name: 'employeePayInput' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = EmployeePayInput;
-
-/***/ },
-/* 169 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var EmployeeExpensesInput = React.createClass({
-		displayName: 'EmployeeExpensesInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'employeeExpensesInput' },
-							'Other Expenses:'
-						),
-						React.createElement('input', { type: 'number', id: 'employeeExpensesInput', name: 'employeeExpensesInput' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = EmployeeExpensesInput;
-
-/***/ },
-/* 170 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var BankInput = React.createClass({
-		displayName: 'BankInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'bankInput' },
-							'Bank:'
-						),
-						React.createElement('input', { type: 'number', id: 'bankInput', name: 'bankInput' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = BankInput;
-
-/***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ApprovalButton = __webpack_require__(163);
-
-	var NetProfitsInput = React.createClass({
-		displayName: 'NetProfitsInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-9 col-sm-9 col-md-9' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'returningInput' },
-							'Returning:'
-						),
-						React.createElement('input', { type: 'number', id: 'returningInput', name: 'returningInput' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-xs-3 col-sm-3 col-md-3' },
-						React.createElement(ApprovalButton, null)
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = NetProfitsInput;
-
-/***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var PhotoUploadInput = React.createClass({
-		displayName: 'PhotoUploadInput',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'container' },
-					React.createElement(
-						'div',
-						{ className: 'col-xs-12 col-sm-12 col-md-12' },
-						React.createElement('label', { htmlFor: 'photoUploadInput' }),
-						React.createElement('input', { type: 'file', id: 'photoUploadInput', name: 'photoUploadInput', accept: 'image/*' })
-					)
-				)
-			);
-		}
-
-	});
-
-	module.exports = PhotoUploadInput;
 
 /***/ }
 /******/ ]);

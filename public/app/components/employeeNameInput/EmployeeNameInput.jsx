@@ -8,8 +8,10 @@ var EmployeeNameInput = React.createClass({
 			<div className='row'>
 				<div className="container">
 					<div className='col-xs-9 col-sm-9 col-md-9'>
-						<label htmlFor="employeeNameInput">Employee:</label>
-						<input list='employeeNameDatalist' id='employeeNameInput' name='employeeNameInput'/>
+						<label htmlFor="employeeNameInput">
+							<span>Employee:</span>
+						</label>
+						<input list='employeeNameDatalist' id='employeeNameInput' name='employeeNameInput' className='col-xs-8 col-sm-8 col-md-8 pull-right'/>
 						<datalist name='employeeNameDatalist' id='employeeNameDatalist' className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
 							<option value="Kevin Luna">Kevin Luna</option>
 							<option value="Ahmed">Ahmed</option>

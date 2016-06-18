@@ -4,7 +4,7 @@ var ApprovalButton = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<button classname='btn btn-warning'>
+				<button className='btn btn-warning'>
 					Approve
 				</button>
 			</div>
