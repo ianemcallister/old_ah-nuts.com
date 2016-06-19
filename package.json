@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ianemcallister/ah-nuts.com#readme",
   "dependencies": {
     "express": "^4.13.4",
+    "jquery": "^3.0.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   },

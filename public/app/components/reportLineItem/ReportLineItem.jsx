@@ -20,6 +20,7 @@ var ReportLineItem = React.createClass({
 		//view elements
 		var inputLabelName = this.state.values.fieldName + 'Input';
 		var dataListName = this.state.values.fieldName + 'List';
+		var placeholder = this.state.values.placeholder;
 		var input = null;
 
 		//build the input, if there is a datalist
@@ -36,8 +37,8 @@ var ReportLineItem = React.createClass({
 			//add the datalist to the input
 			input = (
 				<div>
-					<input list='{dataListName}' id='{inputLabelName}' name='{inputLabelName}' placeholder='' className='col-xs-8 col-sm-8 col-md-8'/>
-					<datalist name='{dataListName' id='{dataListName}' className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+					<input list='{dataListName}' id='{inputLabelName}' name='{inputLabelName}' placeholder={placeholder} className='col-xs-8 col-sm-8 col-md-8'/>
+					<datalist name='{dataListName}' id='{dataListName}' className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
 						{aDatalist}
 					</datalist>
 				</div>
@@ -45,7 +46,7 @@ var ReportLineItem = React.createClass({
 		} else {
 			input = (
 				<div>
-					<input id='{inputLabelName}' name='{inputLabelName}' placeholder='' className='col-xs-8 col-sm-8 col-md-8'/>
+					<input id='{inputLabelName}' name='{inputLabelName}' placeholder={placeholder} className='col-xs-8 col-sm-8 col-md-8'/>
 				</div>
 			);
 		}

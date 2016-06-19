@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var api = require('./api/api');
 
 //return the express object
 var app = express();
@@ -18,20 +19,38 @@ app.use(express.static('public'));
 //app.use('/assets', express.static(__dirname + '/public'));
 
 //my own middleware
-/*app.use('/', function(req, res, next) {
+app.use('/', function(req, res, next) {
 	//log the url to the console
 	console.log('Request Url: ' + req.url);
 
 	next();
-});*/
+});
 
 //handle HTTP requests, for GET calls
-app.get('/', function(req, res) {
+/*app.get('/', function(req, res) {
 	
 	//send back html
 	res.send('<html><head></head><body><h1>Hello World!</h1></body></html>');
 
-});
+});*/
+
+/*app.get('/test', function(req, res) {
+	console.log('good test');
+});*/
+
+app.get('/api/guessMarket', function(req, res) {
+	
+	var gps = null;
+	
+	//if a gps was passsed, get it
+	if(typeof req.params !== 'undefined') gps = req.params.gps;
+	
+	//if this get is called supply the most likely data
+	var guess = api.supplyGuess(gps);
+	
+	//send back
+	res.send(guess);
+})
 
 //open the port for local development
 app.listen(port,function() {

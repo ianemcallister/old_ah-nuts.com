@@ -1,18 +1,19 @@
 var React = require('react');
+var $ = require('jquery');
 
 var ReportLineItem = require('ReportLineItem');
 
 var SubmissionForm = React.createClass({
 	getDefaultProps: function() {
 		return { items: [
-			{fieldName:'Market', datalist: true, listValues:['Bixby Park', 'Surf City Nights', 'Irvine - Discovery', 'Twila Reid Park', 'Anaheim Promenade', 'Huntington Beach Pier', 'Monrovia Street Fair', 'Great Park'], fieldType:'text', requirnents:[]}, 
-			{fieldName:'Employee', datalist: true, listValues:['Kevin Luna', 'Kiley', 'Ahmed'], fieldType:'text', requirnents:[]},
-			{fieldName:'Gross Sales', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
-			{fieldName:'Market Fee', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
-			{fieldName:'Employee Pay', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
-			{fieldName:'Employee\'s Expenses', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
-			{fieldName:'Starting Bank', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
-			{fieldName:'Due to Ah-Nuts', datalist: false, listValues:[], fieldType:'number', requirnents:[]}
+			{fieldName:'Market', placeholder:'', datalist: true, listValues:['Bixby Park', 'Surf City Nights', 'Irvine - Discovery', 'Twila Reid Park', 'Anaheim Promenade', 'Huntington Beach Pier', 'Monrovia Street Fair', 'Great Park'], fieldType:'text', requirnents:[]}, 
+			{fieldName:'Employee', placeholder:'', datalist: true, listValues:['Kevin Luna', 'Kiley', 'Ahmed'], fieldType:'text', requirnents:[]},
+			{fieldName:'Gross Sales', placeholder:'', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Market Fee', placeholder:'', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Employee Pay', placeholder:'', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Employee\'s Expenses', placeholder:'', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Starting Bank', placeholder:'', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Due to Ah-Nuts', placeholder:'', datalist: false, listValues:[], fieldType:'number', requirnents:[]}
 			] 
 		}
 	},
@@ -22,6 +23,9 @@ var SubmissionForm = React.createClass({
 	handleNewData: function(updates) {
 		this.setState(updates);
 	},
+	componentDidMount: function() {
+		this.getRecipetItems();
+	},
 	getRecipetItems: function(marketCorrection) {
 		//if a marketCorrection value is provided use that, otherwise
 		if(typeof marketCorrection !== 'undefined') console.log(marketCorrection);
@@ -30,6 +34,10 @@ var SubmissionForm = React.createClass({
 		//
 		//if I can, collect GPS location data
 		//call the server (possbily passing GPS location data)
+		this.serverRequest = $.get('api/guessMarket', function(result) {
+			console.log('got this back',result);
+			this.handleNewData(result);
+		}.bind(this));
 		//from the server get the following:
 		//   *Market Name Guess
 		//   *Employee Guess
@@ -70,7 +78,7 @@ var SubmissionForm = React.createClass({
 	},
 	render: function() {
 		var testing = 'this is a test';
-		
+		var placeholder = this.state;
 		var listItems = this.props.items.map(function(item) {
 			
 			return (
@@ -84,6 +92,7 @@ var SubmissionForm = React.createClass({
 		return (
 			<div className="container">
 				<p>*Swipe a field left if not approving</p>
+				{placeholder}
 				<form>
 					<ul>
 						{listItems}
