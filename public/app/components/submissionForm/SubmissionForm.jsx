@@ -1,33 +1,31 @@
 var React = require('react');
 
-/*var MarketNameInput = require('MarketNameInput');
-var EmployeeNameInput = require('EmployeeNameInput');
-var DateInput = require('DateInput');
-var GrossSalesInput = require('GrossSalesInput');
-var MarketFeeInput = require('MarketFeeInput');
-var EmployeePayInput = require('EmployeePayInput');
-var EmployeeExpensesInput = require('EmployeeExpensesInput');
-var BankInput = require('BankInput');
-var NetProfitsInput = require('NetProfitsInput');
-var PhotoUploadInput = require('PhotoUploadInput');*/
 var ReportLineItem = require('ReportLineItem');
 
 var SubmissionForm = React.createClass({
 	getDefaultProps: function() {
 		return { items: [
-			{fieldName:'Market'}, 
-			{fieldName:'Employee'},
-			{fieldName:'Gross Sales'},
-			{fieldName:'Market Fee'},
-			{fieldName:'Employee Pay'},
-			{fieldName:'Employee\'s Expenses'},
-			{fieldName:'Starting Bank'},
-			{fieldName:'Due to Ah-Nuts'}
+			{fieldName:'Market', datalist: true, listValues:['Bixby Park', 'Surf City Nights', 'Irvine - Discovery', 'Twila Reid Park', 'Anaheim Promenade', 'Huntington Beach Pier', 'Monrovia Street Fair', 'Great Park'], fieldType:'text', requirnents:[]}, 
+			{fieldName:'Employee', datalist: true, listValues:['Kevin Luna', 'Kiley', 'Ahmed'], fieldType:'text', requirnents:[]},
+			{fieldName:'Gross Sales', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Market Fee', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Employee Pay', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Employee\'s Expenses', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Starting Bank', datalist: false, listValues:[], fieldType:'number', requirnents:[]},
+			{fieldName:'Due to Ah-Nuts', datalist: false, listValues:[], fieldType:'number', requirnents:[]}
 			] 
 		}
 	},
+	/*getInitialState: function() {
+		return { items: [] };
+	},*/
+	handleNewData: function(updates) {
+		this.setState(updates);
+	},
 	getRecipetItems: function(marketCorrection) {
 		//if a marketCorrection value is provided use that, otherwise
+		if(typeof marketCorrection !== 'undefined') console.log(marketCorrection);
+		else console.log('nope');
 		//server will guess
 		//
 		//if I can, collect GPS location data
@@ -95,7 +93,7 @@ var SubmissionForm = React.createClass({
 						<div className="container">
 							<div className='col-xs-12 col-sm-12 col-md-12'>
 							<label htmlFor="submitButton"></label>
-							<input type='submit' id='submitButton' name='submitButton' value='Submit'/>
+							<input type='submit' id='submitButton' name='submitButton' value='Submit' className='btn btn-success col-xs-12 col-sm-12 col-md-12'/>
 							</div>
 						</div>
 					</div>

@@ -19753,27 +19753,24 @@
 
 	var React = __webpack_require__(1);
 
-	/*var MarketNameInput = require('MarketNameInput');
-	var EmployeeNameInput = require('EmployeeNameInput');
-	var DateInput = require('DateInput');
-	var GrossSalesInput = require('GrossSalesInput');
-	var MarketFeeInput = require('MarketFeeInput');
-	var EmployeePayInput = require('EmployeePayInput');
-	var EmployeeExpensesInput = require('EmployeeExpensesInput');
-	var BankInput = require('BankInput');
-	var NetProfitsInput = require('NetProfitsInput');
-	var PhotoUploadInput = require('PhotoUploadInput');*/
 	var ReportLineItem = __webpack_require__(162);
 
 	var SubmissionForm = React.createClass({
 		displayName: 'SubmissionForm',
 
 		getDefaultProps: function getDefaultProps() {
-			return { items: [{ fieldName: 'Market' }, { fieldName: 'Employee' }, { fieldName: 'Gross Sales' }, { fieldName: 'Market Fee' }, { fieldName: 'Employee Pay' }, { fieldName: 'Employee\'s Expenses' }, { fieldName: 'Starting Bank' }, { fieldName: 'Due to Ah-Nuts' }]
+			return { items: [{ fieldName: 'Market', datalist: true, listValues: ['Bixby Park', 'Surf City Nights', 'Irvine - Discovery', 'Twila Reid Park', 'Anaheim Promenade', 'Huntington Beach Pier', 'Monrovia Street Fair', 'Great Park'], fieldType: 'text', requirnents: [] }, { fieldName: 'Employee', datalist: true, listValues: ['Kevin Luna', 'Kiley', 'Ahmed'], fieldType: 'text', requirnents: [] }, { fieldName: 'Gross Sales', datalist: false, listValues: [], fieldType: 'number', requirnents: [] }, { fieldName: 'Market Fee', datalist: false, listValues: [], fieldType: 'number', requirnents: [] }, { fieldName: 'Employee Pay', datalist: false, listValues: [], fieldType: 'number', requirnents: [] }, { fieldName: 'Employee\'s Expenses', datalist: false, listValues: [], fieldType: 'number', requirnents: [] }, { fieldName: 'Starting Bank', datalist: false, listValues: [], fieldType: 'number', requirnents: [] }, { fieldName: 'Due to Ah-Nuts', datalist: false, listValues: [], fieldType: 'number', requirnents: [] }]
 			};
+		},
+		/*getInitialState: function() {
+	 	return { items: [] };
+	 },*/
+		handleNewData: function handleNewData(updates) {
+			this.setState(updates);
 		},
 		getRecipetItems: function getRecipetItems(marketCorrection) {
 			//if a marketCorrection value is provided use that, otherwise
+			if (typeof marketCorrection !== 'undefined') console.log(marketCorrection);else console.log('nope');
 			//server will guess
 			//
 			//if I can, collect GPS location data
@@ -19854,7 +19851,7 @@
 								'div',
 								{ className: 'col-xs-12 col-sm-12 col-md-12' },
 								React.createElement('label', { htmlFor: 'submitButton' }),
-								React.createElement('input', { type: 'submit', id: 'submitButton', name: 'submitButton', value: 'Submit' })
+								React.createElement('input', { type: 'submit', id: 'submitButton', name: 'submitButton', value: 'Submit', className: 'btn btn-success col-xs-12 col-sm-12 col-md-12' })
 							)
 						)
 					)
@@ -19893,12 +19890,49 @@
 		render: function render() {
 			var values = this.state.values;
 
+			//view elements
+			var inputLabelName = this.state.values.fieldName + 'Input';
+			var dataListName = this.state.values.fieldName + 'List';
+			var input = null;
+
+			//build the input, if there is a datalist
+			if (this.state.values.datalist) {
+				//build the datalist
+				var aDatalist = this.props.values.listValues.map(function (value) {
+
+					return React.createElement(
+						'option',
+						{ value: value },
+						value
+					);
+				});
+
+				//add the datalist to the input
+				input = React.createElement(
+					'div',
+					null,
+					React.createElement('input', { list: '{dataListName}', id: '{inputLabelName}', name: '{inputLabelName}', placeholder: '', className: 'col-xs-8 col-sm-8 col-md-8' }),
+					React.createElement(
+						'datalist',
+						{ name: '{dataListName', id: '{dataListName}', className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12' },
+						aDatalist
+					)
+				);
+			} else {
+				input = React.createElement(
+					'div',
+					null,
+					React.createElement('input', { id: '{inputLabelName}', name: '{inputLabelName}', placeholder: '', className: 'col-xs-8 col-sm-8 col-md-8' })
+				);
+			}
+
+			//return the JSX
 			return React.createElement(
 				'div',
 				null,
 				React.createElement(
 					'div',
-					{ className: 'col-xs-9 col-sm-9 col-md-9' },
+					{ className: 'col-xs-9 col-sm-9 col-md-9 inputTitle' },
 					React.createElement(
 						'label',
 						{ htmlFor: 'bankInput' },
@@ -19909,12 +19943,16 @@
 							':'
 						)
 					),
-					React.createElement('input', { type: 'number', id: 'bankInput', name: 'bankInput', className: 'col-xs-8 col-sm-8 col-md-8 pull-right' })
+					input
 				),
 				React.createElement(
 					'div',
 					{ className: 'col-xs-3 col-sm-3 col-md-3' },
-					React.createElement(ApprovalButton, null)
+					React.createElement(
+						'span',
+						{ className: 'pull-right' },
+						React.createElement(ApprovalButton, null)
+					)
 				)
 			);
 		}
