@@ -17,7 +17,7 @@ gulp.task('default', ['styles', 'lint', 'copy-html', 'copy-images', 'scripts-dis
 	gulp.watch('public/**/*.js', ['lint'])
 		.on('change', browserSync.reload);
 	gulp.watch('./public/index.html', ['copy-html']);
-	gulp.watch('views/*.htm', ['copy-html']);
+	gulp.watch('public/**/*.htm', ['copy-html']);
 	gulp.watch('./dist/index.html')
 		.on('change', browserSync.reload);
 
@@ -62,8 +62,8 @@ gulp.task('scripts-dist', function() {
 gulp.task('copy-html', function() {
 	gulp.src('./public/index.html')
 		.pipe(gulp.dest('./dist'));
-	gulp.src('views/**/*.htm')
-		.pipe(gulp.dest('./dist/views'));
+	gulp.src('./public/**/*.htm')
+		.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('copy-images', function() {
