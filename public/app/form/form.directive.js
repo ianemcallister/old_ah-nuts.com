@@ -35,6 +35,15 @@ function recieptForm() {
 		vm.currentDate = new Date();
 		vm['inputs'] = {};
 		vm['approvals'] = {};
+		vm['submitBtnClasses'] = {
+			"btn":true,
+			"btn-danger":true,
+			"btn-success":false,
+			"col-xs-12":true,
+			"col-sm-12":true,
+			"col-md-12":true,
+			"col-lg-12":true
+		}
 
 		//create the needed objects
 		Object.keys(vm.data.questions).forEach(function(key) {
@@ -73,6 +82,20 @@ function recieptForm() {
 		vm.inputs['Bank'].suggestion = 60;
 		vm.inputs['Due'].suggestion = 220;
 
+		function unlockSubmitBtn() {
+			//
+			$log.info('Unlocking btn');
+			vm.submitBtnClasses['btn-danger'] = false;
+			vm.submitBtnClasses['btn-success'] = true;
+		}
+
+		function lockSubmitBtn() {
+			//
+			$log.info('Locking btn');
+			vm.submitBtnClasses['btn-danger'] = true;
+			vm.submitBtnClasses['btn-success'] = false;
+		}
+
 		function countApproved() {
 			var numberOf = 0;
 
@@ -83,12 +106,22 @@ function recieptForm() {
 				if(isApproved) numberOf++;
 			});
 
+			$log.info(numberOf, totalFields,numberOf==totalFields);
+			if(numberOf==totalFields) unlockSubmitBtn();
+			else lockSubmitBtn();
+
 			return numberOf;
 		}
 
 		vm.refreshApprovals = function() {
 			//loop through all questions
 			Object.keys(vm.data.questions).forEach(function(key) {
+				var recordName = vm.data.questions[key].name;
+				
+				//reset suggestions
+
+				//reset values
+				vm.inputs[recordName].value = '';
 
 				//set values
 				vm.data.questions[key].approvals.addressed = false;
@@ -104,6 +137,28 @@ function recieptForm() {
 				vm.data.questions[key].classes.inputDiv['has-warning'] = false;
 				vm.data.questions[key].classes.inputDiv['has-danger'] = false;
 			});
+
+			countApproved();
+		}
+
+		vm.changed = function(fieldName) {
+			var recordNum = fieldsHash[fieldName];
+			//notify the record being changed
+			$log.info(fieldName);
+
+			//update the approval button
+			vm.data.questions[recordNum].approvals.addressed = true;
+			vm.data.questions[recordNum].approvals.value = true;
+			vm.data.questions[recordNum].approvals.text = "NO!";
+
+			//change the class
+			vm.data.questions[recordNum].classes.approvalDiv['round-button-circle-free'] = false;
+			vm.data.questions[recordNum].classes.approvalDiv['round-button-circle-revised'] = true;
+			
+			//change the input class
+			vm.data.questions[recordNum].classes.inputDiv['has-danger'] = true;
+
+			countApproved();
 		}
 
 		vm.approveField = function(fieldName) {
@@ -112,6 +167,10 @@ function recieptForm() {
 				
 			if(!isApproved) {
 
+				//update the values
+				vm.inputs[fieldName].value = vm.inputs[fieldName].suggestion;
+
+				//update the button
 				vm.data.questions[recordNum].approvals.addressed = true;
 				vm.data.questions[recordNum].approvals.value = true;
 				vm.data.questions[recordNum].approvals.text = "YES!";
@@ -122,6 +181,8 @@ function recieptForm() {
 				
 				//change the input class
 				vm.data.questions[recordNum].classes.inputDiv['has-success'] = true;
+
+				countApproved();
 				
 			}
 
