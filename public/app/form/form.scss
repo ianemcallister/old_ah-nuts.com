@@ -1,7 +1,7 @@
 .round-button {
 	width:50px;
 }
-.round-button-circle {
+.round-button-circle-free {
 	width: 110%;
 	height:0px;
 	padding-bottom: 100%;
@@ -9,7 +9,29 @@
 	border:3px solid #cfdcec;
     overflow:hidden;
     
-    background: #4679BD; 
+    background: #d5833a; 
+    box-shadow: 0 0 3px gray;
+}
+.round-button-circle-approved {
+	width: 110%;
+	height:0px;
+	padding-bottom: 100%;
+    border-radius: 50%;
+	border:3px solid #cfdcec;
+    overflow:hidden;
+    
+    background: #449d44; 
+    box-shadow: 0 0 3px gray;
+}
+.round-button-circle-revised {
+	width: 110%;
+	height:0px;
+	padding-bottom: 100%;
+    border-radius: 50%;
+	border:3px solid #cfdcec;
+    overflow:hidden;
+    
+    background: #d9534f; 
     box-shadow: 0 0 3px gray;
 }
 .round-button-circle:hover {

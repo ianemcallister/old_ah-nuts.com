@@ -7,7 +7,7 @@
 			"datalist":true,
 			"type":"text",
 			"listName":"marketNameInput",
-			"suggestion":"Surf City Nights",
+			"suggestion":"",
 			"listValues": [
 				"Anaheim Promenade",
 				"Twila Reid",
@@ -19,192 +19,432 @@
 				"Monrovia Street Fair",
 				"Surf City Nights - Hunington"
 			],
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		},
 		{
 			"name":"Name",
 			"datalist":false,
-			"suggestion":"Ahmed",
+			"suggestion":"",
 			"type":"text",
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		},
 		{
 			"name":"Gross",
 			"datalist":false,
-			"suggestion":"415",
+			"suggestion":"",
 			"type":"number",
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		},
 		{
 			"name":"Fee",
 			"datalist":false,
-			"suggestion":"42",
+			"suggestion":"",
 			"type":"number",
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		},
 		{
 			"name":"Pay",
 			"datalist":false,
-			"suggestion":"100",
+			"suggestion":"",
 			"type":"number",
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		},
 		{
-			"name":"Expenses",
+			"name":"Reciepts",
 			"datalist":false,
-			"suggestion":"20",
+			"suggestion":"",
 			"type":"number",
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		},
 		{
 			"name":"Bank",
 			"datalist":false,
-			"suggestion":"60",
+			"suggestion":"",
 			"type":"number",
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		},
 		{
 			"name":"Due",
 			"datalist":false,
-			"suggestion":"100",
+			"suggestion":"",
 			"type":"number",
 			"description":"$ should be returned to Ah-Nuts",
-			"titleClasses": {
-				"col-xs-4":true,
-				"col-sm-4":true,
-				"col-md-4":true,
-				"col-ld-4":true
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
 			},
-			"inputClasses": {
-				"col-xs-5":true,
-				"col-sm-5":true,
-				"col-md-5":true,
-				"col-ld-5":true
+			"styles": {
+
 			},
-			"approvalClasses": {
-				"col-xs-2":true,
-				"col-sm-2":true,
-				"col-md-2":true,
-				"col-ld-2":true
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
 			}
 		}
 	]

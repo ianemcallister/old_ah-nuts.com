@@ -1,52 +1,62 @@
 <div class='container'>
 	
 	<!--report title-->
-	<h1>{{vm.data.title}}</h1>
+	<h1>
+		{{vm.data.title}}
+	</h1>
 	
 	<!--date-->
-	<p>{{vm.currentDate | date: 'medium' }}</p>
+	<p>
+		<span style='padding-left: 0px; padding-top: 10px; padding-bottom: 20px' class='col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+			{{vm.currentDate | date: 'medium' }}
+		</span>
+		<span style='padding-right: 0px' class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+			<button class='btn btn-primary pull-right' ng-click='vm.refreshApprovals()'>Refresh</button>
+		</span>
+	</p>
 	<form action="">
 		<!--list of inputs-->
 		<ul style='padding-left:0px'>
 			<li style='list-style:none; height:56px' ng-repeat='question in vm.data.questions'>
 				<!--The question-->
-				<span style='padding-left:0px; padding-top: 10px; font-size:1.5em;' ng-class='question.titleClasses'>
+				<span style='padding-left:0px; padding-top: 10px; font-size:1.5em;' ng-class='question.classes.title'>
 					<strong>{{question.name}}:</strong> <br>
 					<!--<span style='font-size:.5em; padding-top: 0px; '>{{question.description}}</span>-->
 				</span>
 
 				<!--Input field: No Datalist-->
-				<span ng-if='!question.datalist' style='height:56px; padding-left:0px; padding-right:0px; font-size:2em;' ng-class='question.inputClasses'>
+				<span ng-if='!question.datalist' style='height:56px; padding-left:0px; padding-right:0px; font-size:2em;' ng-class='question.classes.input'>
 
 					<!--Input field: Text-->
-					<input ng-if='question.type==="text"' ng-model=vm.inputs[question.name] type="text" style='width:100%; height:56px' placeholder={{question.suggestion}}>
+					<input ng-if='question.type==="text"' ng-model=vm.inputs[question.name].value type="text" style='width:100%; height:56px' placeholder={{vm.inputs[question.name].suggestion}}>
 					
 					<!--Input field: Number-->
-					<div ng-if='question.type==="number"' class="input-group pull-right" style='width:100%; height:56px'>
-					  <span class="input-group-addon" style='padding-left:5px; padding-right:5px;'>$</span>
-					  <input ng-model=vm.inputs[question.name] type={{question.type}} class="form-control" style='width:100%; height:56px; text-align:right' placeholder={{question.suggestion}}>
-					  <span class="input-group-addon" style='padding-left:5px; padding-right:5px;'>.00</span>
+					<div ng-if='question.type==="number"' ng-class="question.classes.inputDiv" style='width:100%; height:56px'>
+					  <span ng-class="question.classes.inputSpan" style='padding-left:5px; padding-right:5px;'>$</span>
+					  <input ng-model=vm.inputs[question.name].value type={{question.type}} ng-class="question.classes.inputInput" style='width:100%; height:56px; text-align:right' placeholder={{vm.inputs[question.name].suggestion}}>
+					  <span ng-class="question.classes.inputSpan" style='padding-left:5px; padding-right:5px;'>.00</span>
 					</div>
 
 				</span>
 				
 				<!--Input field: Datalist-->
-				<span ng-if='question.datalist' style='height:56px; padding-left:0px; padding-right:0px; font-size:2em;' ng-class='question.inputClasses'>
-					<input list='eventTypePicker' ng-model=vm.inputs[question.name] name='eventTypePicker' style='width:100%; height:56px' placeholder={{question.suggestion}}>
+				<span ng-if='question.datalist' style='height:56px; padding-left:0px; padding-right:0px; font-size:2em;' ng-class='question.classes.input'>
+					<input list='eventTypePicker' ng-model=vm.inputs[question.name].value name='eventTypePicker' style='width:100%; height:56px' placeholder={{vm.inputs[question.name].suggestion}}>
 					<datalist name="eventTypePicker" id="eventTypePicker">
 						<option ng-repeat='market in question.listValues' value={{market}}>{{market}}</option>
 					</datalist>
 				</span>
 
 				<!--Approval button-->
-				<div style='padding-left:0px; padding-right:0px' class="round-button pull-right" ng-class='question.approvalClasses'><div class="round-button-circle"><a ng-click='' class="round-button">YES!</a></div></div>
+				<div style='padding-left:0px; padding-right:0px' ng-class='question.classes.approval'><div ng-class="question.classes.approvalDiv"><a ng-click='vm.approveField(question.name)' ng-class="question.classes.approvalA">{{question.approvals.text}}</a></div></div>
 			
 			</li>	
 		</ul>
 	</form>
 
-	<p>Please make sure you transfeer ${{}}.00 to Ah-Nuts.</p>
-	<p>{{vm.inputs}}</p>
+	<p>Please make sure you transfeer ${{vm.inputs['Due'].suggestion}}.00 to Ah-Nuts.</p>
+	
 	<!--submission buttn-->
-	<button style="margin-top:50px; margin-bottom:50px; font-size:5em;" class="btn btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12">Submit</button>
+	<button style="margin-top:50px; margin-bottom:50px; font-size:5em;" ng-click='vm.submitForm()' class="btn btn-danger col-xs-12 col-sm-12 col-md-12 col-lg-12">Submit</button>
+
 </div>
