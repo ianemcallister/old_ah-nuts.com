@@ -1,0 +1,22 @@
+<div class='container'>
+	
+	<!--report title-->
+	<h1>{{vm.data.title}}</h1>
+	
+	<!--date-->
+	<p>{{vm.currentDate | date: 'medium' }}</p>
+	<form action="">
+		<!--list of inputs-->
+		<ul style='padding-left:0px'>
+			<li style='list-style:none' ng-repeat='question in vm.data.questions'>
+				<!--The question-->
+				<strong ng-class='question.titleClasses'>{{question.name}}:</strong>
+				<!--Input field-->
+				<input type="text" ng-class='question.inputClasses'>
+			</li>	
+		</ul>
+	</form>
+
+	<!--submission buttn-->
+	<button class="btn btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12">Submit</button>
+</div>

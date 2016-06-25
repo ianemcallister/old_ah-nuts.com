@@ -27,7 +27,7 @@ app.use('/', function(req, res, next) {
 });
 
 //handle HTTP requests, for GET calls
-app.get('/:path/:name', function(req, res) {
+/*app.get('/:path/:name', function(req, res) {
 	
 	var path = req.params.path;
 
@@ -51,10 +51,17 @@ app.get('/:path/:name', function(req, res) {
 	//send back html
 	//res.send('<html><head></head><body><h1>Hello World!</h1></body></html>');
 
-});
+});*/
 
-/*app.get('/test', function(req, res) {
-	console.log('good test');
+/*app.get('/', function(req, res) {
+	res.sendFile(filename, options, function(err) {
+		if(err) {
+			console.log(err);
+			res.status(err.status).end();
+		} else {
+			console.log('sent:', filename);
+		}
+	});
 });*/
 
 app.get('/api/guessMarket', function(req, res) {
