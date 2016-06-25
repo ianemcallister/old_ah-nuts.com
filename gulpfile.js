@@ -17,7 +17,7 @@ gulp.task('default', ['styles', 'lint', 'copy-html', 'copy-images', 'scripts-dis
 	gulp.watch('public/**/*.js', ['lint'])
 		.on('change', browserSync.reload);
 	gulp.watch('./public/index.html', ['copy-html']);
-	gulp.watch('public/**/*.htm', ['copy-html']);
+	gulp.watch('./public/**/*.htm', ['copy-html']);
 	gulp.watch('./dist/index.html')
 		.on('change', browserSync.reload);
 
@@ -93,4 +93,36 @@ gulp.task('lint', function () {
 		// To have the process exit with an error code (1) on
 		// lint error, return the stream and pipe to failOnError last.
 		.pipe(eslint.failOnError());
+});
+
+gulp.task('serve:production', ['styles', 'lint', 'copy-html', 'copy-images', 'scripts-dist'], function() {
+	var express = require('express');
+	var bodyParser = require('body-parser');
+	
+	//return the express object
+	var app = express();
+
+	//environment variables
+	var port = process.env.PORT || 3000;
+
+	//get the URL encoded parser
+	var urlencodedParser = bodyParser.urlencoded({ extended: false });
+	var jsonParser = bodyParser.json();
+
+	//tell it the folder to serve
+	app.use(express.static('dist'));
+	//my own middleware
+	app.use('/', function(req, res, next) {
+		//log the url to the console
+		console.log('Request Url: ' + req.url);
+
+		next();
+	});
+
+	//open the port for local development
+	app.listen(port,function() {
+		console.log('Express server is up and running on port ' + port);
+	})
+
+	return app;
 });

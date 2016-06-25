@@ -8,7 +8,9 @@ function recieptForm() {
 		restrict: 'AECM',
 		templateUrl: 'app/form/form.directive.htm',
 		replace: true,
-		scope: {},
+		scope: {
+			data: '='
+		},
 		link: linkFunc,
 		controller: recieptForm,
 		controllerAs: 'vm',
@@ -23,8 +25,11 @@ function recieptForm() {
     
     /* @ngInject */
     function recieptForm($scope, $log) {
-    	//var vm = this;
-    	console.log('in the form');
+		var vm = this;
+
+		vm.currentDate = new Date();
+
+		console.log('in the form', this.data);
 	}
 
 	return directive;

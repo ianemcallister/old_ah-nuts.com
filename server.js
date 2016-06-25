@@ -13,7 +13,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var jsonParser = bodyParser.json();
 
 //tell it the folder to serve
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
 //connecting middleware
 //app.use('/assets', express.static(__dirname + '/public'));
