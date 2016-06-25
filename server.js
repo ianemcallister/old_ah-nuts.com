@@ -27,12 +27,31 @@ app.use('/', function(req, res, next) {
 });
 
 //handle HTTP requests, for GET calls
-/*app.get('/', function(req, res) {
+app.get('/:path/:name', function(req, res) {
 	
-	//send back html
-	res.send('<html><head></head><body><h1>Hello World!</h1></body></html>');
+	var path = req.params.path;
 
-});*/
+	var options = {
+		root: __dirname + '/dist' + path,
+		headers: {
+			'x-timestamp': Date.now(),
+			'x-sent': true
+		}
+	};
+
+	var filename = req.params.name;
+	res.sendFile(filename, options, function(err) {
+		if(err) {
+			console.log(err);
+			res.status(err.status).end();
+		} else {
+			console.log('sent:', filename);
+		}
+	});
+	//send back html
+	//res.send('<html><head></head><body><h1>Hello World!</h1></body></html>');
+
+});
 
 /*app.get('/test', function(req, res) {
 	console.log('good test');
