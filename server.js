@@ -27,12 +27,11 @@ app.use('/', function(req, res, next) {
 });
 
 //handle HTTP requests, for GET calls
-/*app.get('/:path/:name', function(req, res) {
-	
-	var path = req.params.path;
+app.get('/assets/:name', function(req, res) {
 
+	console.log('got this');
 	var options = {
-		root: __dirname + '/dist' + path,
+		root: __dirname + '/dist/assets',
 		headers: {
 			'x-timestamp': Date.now(),
 			'x-sent': true
@@ -40,6 +39,9 @@ app.use('/', function(req, res, next) {
 	};
 
 	var filename = req.params.name;
+
+	console.log('getting this', filename, 'from', options);
+
 	res.sendFile(filename, options, function(err) {
 		if(err) {
 			console.log(err);
@@ -51,8 +53,14 @@ app.use('/', function(req, res, next) {
 	//send back html
 	//res.send('<html><head></head><body><h1>Hello World!</h1></body></html>');
 
-});*/
+});
 
+/*app.post('/:path/:file', function(req, res) {
+	var path = req.params.path;
+	var filename = req.params.file;
+	console.log(path, filename);
+	res.send({'testing':'test', "path":path, "filename":filename});
+});*/
 /*app.get('/', function(req, res) {
 	res.sendFile(filename, options, function(err) {
 		if(err) {
@@ -64,7 +72,7 @@ app.use('/', function(req, res, next) {
 	});
 });*/
 
-app.get('/api/guessMarket', function(req, res) {
+/*app.get('/api/guessMarket', function(req, res) {
 	
 	var gps = null;
 	
@@ -76,7 +84,7 @@ app.get('/api/guessMarket', function(req, res) {
 	
 	//send back
 	res.send(guess);
-})
+})*/
 
 //open the port for local development
 app.listen(port,function() {

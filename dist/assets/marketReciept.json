@@ -1,0 +1,175 @@
+{
+	"title":"Market Reciept",
+	"anotherTest":8375,
+	"questions": [
+		{
+			"name":"Market",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		},
+		{
+			"name":"Name",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		},
+		{
+			"name":"Gross",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		},
+		{
+			"name":"Fee",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		},
+		{
+			"name":"Pay",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		},
+		{
+			"name":"Expenses",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		},
+		{
+			"name":"Bank",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		},
+		{
+			"name":"Due",
+			"description":"$ should be returned to Ah-Nuts",
+			"titleClasses": {
+				"col-xs-4":true,
+				"col-sm-4":true,
+				"col-md-4":true,
+				"col-ld-4":true
+			},
+			"inputClasses": {
+				"col-xs-5":true,
+				"col-sm-5":true,
+				"col-md-5":true,
+				"col-ld-5":true
+			},
+			"approvalClasses": {
+				"col-xs-2":true,
+				"col-sm-2":true,
+				"col-md-2":true,
+				"col-ld-2":true
+			}
+		}
+	]
+}

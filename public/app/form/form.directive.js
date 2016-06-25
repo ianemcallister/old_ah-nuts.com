@@ -28,8 +28,6 @@ function recieptForm() {
 		var vm = this;
 
 		vm.currentDate = new Date();
-
-		console.log('in the form', this.data);
 	}
 
 	return directive;

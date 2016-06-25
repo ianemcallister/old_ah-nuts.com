@@ -72,7 +72,7 @@ gulp.task('copy-images', function() {
 });
 
 gulp.task('styles', function() {
-	gulp.src('sass/**/*.scss')
+	gulp.src('./public/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions']
