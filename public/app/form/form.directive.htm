@@ -24,14 +24,10 @@
 					<!--Input field: Number-->
 					<div ng-if='question.type==="number"' class="input-group pull-right" style='width:100%; height:56px'>
 					  <span class="input-group-addon" style='padding-left:5px; padding-right:5px;'>$</span>
-					  <input type="text" class="form-control" style='width:100%; height:56px'>
+					  <input type={{question.type}} class="form-control" style='width:100%; height:56px' placeholder={{question.suggestion}}>
 					  <span class="input-group-addon" style='padding-left:5px; padding-right:5px;'>.00</span>
 					</div>
 
-					
-					
-					<!--<input type="number"  placeholder={{question.suggestion}}>
-					-->
 				</span>
 				
 				<!--Input field: Datalist-->
@@ -48,6 +44,8 @@
 			</li>	
 		</ul>
 	</form>
+
+	<p>Please make sure you transfeer ${{}}.00 to Ah-Nuts.</p>
 
 	<!--submission buttn-->
 	<button style="margin-top:50px; margin-bottom:50px; font-size:5em;" class="btn btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12">Submit</button>

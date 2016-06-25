@@ -27,7 +27,18 @@ function recieptForm() {
     function recieptForm($scope, $log) {
 		var vm = this;
 
+		//set view model values
 		vm.currentDate = new Date();
+		vm['inputs'] = {};
+
+		//create the needed objects
+		Object.keys(vm.data.questions).forEach(function(key) {
+			
+			vm.inputs[vm.data.questions[key].name] = '';
+		});
+
+		$log.info(vm.inputs);
+
 	}
 
 	return directive;

@@ -7,7 +7,7 @@
 			"datalist":true,
 			"type":"text",
 			"listName":"marketNameInput",
-			"suggestion":"testing",
+			"suggestion":"Surf City Nights",
 			"listValues": [
 				"Anaheim Promenade",
 				"Twila Reid",
@@ -41,7 +41,7 @@
 		{
 			"name":"Name",
 			"datalist":false,
-			"suggestion":"testing",
+			"suggestion":"Ahmed",
 			"type":"text",
 			"titleClasses": {
 				"col-xs-4":true,
@@ -65,7 +65,7 @@
 		{
 			"name":"Gross",
 			"datalist":false,
-			"suggestion":"testing",
+			"suggestion":"415",
 			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
@@ -89,7 +89,7 @@
 		{
 			"name":"Fee",
 			"datalist":false,
-			"suggestion":"testing",
+			"suggestion":"42",
 			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
@@ -113,7 +113,7 @@
 		{
 			"name":"Pay",
 			"datalist":false,
-			"suggestion":"testing",
+			"suggestion":"100",
 			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
@@ -137,7 +137,7 @@
 		{
 			"name":"Expenses",
 			"datalist":false,
-			"suggestion":"testing",
+			"suggestion":"20",
 			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
@@ -161,7 +161,7 @@
 		{
 			"name":"Bank",
 			"datalist":false,
-			"suggestion":"testing",
+			"suggestion":"60",
 			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
@@ -185,7 +185,7 @@
 		{
 			"name":"Due",
 			"datalist":false,
-			"suggestion":"testing",
+			"suggestion":"100",
 			"type":"number",
 			"description":"$ should be returned to Ah-Nuts",
 			"titleClasses": {
