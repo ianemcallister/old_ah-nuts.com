@@ -4,6 +4,21 @@
 	"questions": [
 		{
 			"name":"Market",
+			"datalist":true,
+			"type":"text",
+			"listName":"marketNameInput",
+			"suggestion":"testing",
+			"listValues": [
+				"Anaheim Promenade",
+				"Twila Reid",
+				"Hunington Beach Pier",
+				"Irvine Great Park",
+				"Bixby Park - Tuesday",
+				"Bixby Park - Saturday",
+				"Irvine - Discovery",
+				"Monrovia Street Fair",
+				"Surf City Nights - Hunington"
+			],
 			"titleClasses": {
 				"col-xs-4":true,
 				"col-sm-4":true,
@@ -25,6 +40,9 @@
 		},
 		{
 			"name":"Name",
+			"datalist":false,
+			"suggestion":"testing",
+			"type":"text",
 			"titleClasses": {
 				"col-xs-4":true,
 				"col-sm-4":true,
@@ -46,6 +64,9 @@
 		},
 		{
 			"name":"Gross",
+			"datalist":false,
+			"suggestion":"testing",
+			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
 				"col-sm-4":true,
@@ -67,6 +88,9 @@
 		},
 		{
 			"name":"Fee",
+			"datalist":false,
+			"suggestion":"testing",
+			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
 				"col-sm-4":true,
@@ -88,6 +112,9 @@
 		},
 		{
 			"name":"Pay",
+			"datalist":false,
+			"suggestion":"testing",
+			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
 				"col-sm-4":true,
@@ -109,6 +136,9 @@
 		},
 		{
 			"name":"Expenses",
+			"datalist":false,
+			"suggestion":"testing",
+			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
 				"col-sm-4":true,
@@ -130,6 +160,9 @@
 		},
 		{
 			"name":"Bank",
+			"datalist":false,
+			"suggestion":"testing",
+			"type":"number",
 			"titleClasses": {
 				"col-xs-4":true,
 				"col-sm-4":true,
@@ -151,6 +184,9 @@
 		},
 		{
 			"name":"Due",
+			"datalist":false,
+			"suggestion":"testing",
+			"type":"number",
 			"description":"$ should be returned to Ah-Nuts",
 			"titleClasses": {
 				"col-xs-4":true,
