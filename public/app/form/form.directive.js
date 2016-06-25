@@ -99,6 +99,10 @@ function recieptForm() {
 				vm.data.questions[key].classes.approvalDiv['round-button-circle-free'] = true;
 				vm.data.questions[key].classes.approvalDiv['round-button-circle-approved'] = false;
 				vm.data.questions[key].classes.approvalDiv['round-button-circle-revised'] = false;
+				
+				vm.data.questions[key].classes.inputDiv['has-success'] = false;
+				vm.data.questions[key].classes.inputDiv['has-warning'] = false;
+				vm.data.questions[key].classes.inputDiv['has-danger'] = false;
 			});
 		}
 
@@ -115,6 +119,9 @@ function recieptForm() {
 				//change the class
 				vm.data.questions[recordNum].classes.approvalDiv['round-button-circle-free'] = false;
 				vm.data.questions[recordNum].classes.approvalDiv['round-button-circle-approved'] = true;
+				
+				//change the input class
+				vm.data.questions[recordNum].classes.inputDiv['has-success'] = true;
 				
 			}
 
