@@ -19,12 +19,12 @@
 				<span ng-if='!question.datalist' style='height:56px; padding-left:0px; padding-right:0px; font-size:2em;' ng-class='question.inputClasses'>
 
 					<!--Input field: Text-->
-					<input ng-if='question.type==="text"' type="text" style='width:100%; height:56px' placeholder={{question.suggestion}}>
+					<input ng-if='question.type==="text"' ng-model=vm.inputs[question.name] type="text" style='width:100%; height:56px' placeholder={{question.suggestion}}>
 					
 					<!--Input field: Number-->
 					<div ng-if='question.type==="number"' class="input-group pull-right" style='width:100%; height:56px'>
 					  <span class="input-group-addon" style='padding-left:5px; padding-right:5px;'>$</span>
-					  <input type={{question.type}} class="form-control" style='width:100%; height:56px' placeholder={{question.suggestion}}>
+					  <input ng-model=vm.inputs[question.name] type={{question.type}} class="form-control" style='width:100%; height:56px; text-align:right' placeholder={{question.suggestion}}>
 					  <span class="input-group-addon" style='padding-left:5px; padding-right:5px;'>.00</span>
 					</div>
 
@@ -32,7 +32,7 @@
 				
 				<!--Input field: Datalist-->
 				<span ng-if='question.datalist' style='height:56px; padding-left:0px; padding-right:0px; font-size:2em;' ng-class='question.inputClasses'>
-					<input list='eventTypePicker' name='eventTypePicker' style='width:100%; height:56px' placeholder={{question.suggestion}}>
+					<input list='eventTypePicker' ng-model=vm.inputs[question.name] name='eventTypePicker' style='width:100%; height:56px' placeholder={{question.suggestion}}>
 					<datalist name="eventTypePicker" id="eventTypePicker">
 						<option ng-repeat='market in question.listValues' value={{market}}>{{market}}</option>
 					</datalist>
@@ -46,7 +46,7 @@
 	</form>
 
 	<p>Please make sure you transfeer ${{}}.00 to Ah-Nuts.</p>
-
+	<p>{{vm.inputs}}</p>
 	<!--submission buttn-->
 	<button style="margin-top:50px; margin-bottom:50px; font-size:5em;" class="btn btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12">Submit</button>
 </div>
