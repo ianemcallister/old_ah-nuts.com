@@ -24,36 +24,48 @@
 					<strong>{{question.name}}:</strong> <br>
 					<!--<span style='font-size:.5em; padding-top: 0px; '>{{question.description}}</span>-->
 				</label>
+	
+				<!--Input field: No Image-->
+				<div ng-if='question.type!=="file"'>
+					<!--Input field: No Datalist-->
+					<span ng-if='!question.datalist' ng-style='question.styles.input.datalist' ng-class='question.classes.input'>
 
-				<!--Input field: No Datalist-->
-				<span ng-if='!question.datalist' ng-style='question.styles.input.datalist' ng-class='question.classes.input'>
+						<!--Input field: Text-->
+						<div ng-class="question.classes.inputDiv">
+							<input id={{question.name}} ng-if='question.type==="text"' ng-change='vm.changed(question.name)' ng-class="question.classes.inputInput" ng-model=vm.inputs[question.name].value type="text" ng-style='question.styles.input.inputWrapper' placeholder={{vm.inputs[question.name].suggestion}}>
+						</div>
+						
+						<!--Input field: Number-->
+						<div ng-if='question.type==="number"' ng-class="question.classes.inputDiv" ng-style='question.styles.input.inputWrapper'>
+						  <span ng-class="question.classes.inputSpan" style='padding-left:5px; padding-right:5px;'>$</span>
+						  <input id={{question.name}} ng-model=vm.inputs[question.name].value type={{question.type}} ng-class="question.classes.inputInput" ng-change='vm.changed(question.name)' style='width:100%; height:56px; text-align:right' placeholder={{vm.inputs[question.name].suggestion}}>
+						  <span ng-class="question.classes.inputSpan" style='padding-left:5px; padding-right:5px;'>.00</span>
+						</div>
 
-					<!--Input field: Text-->
-					<div ng-class="question.classes.inputDiv">
-						<input id={{question.name}} ng-if='question.type==="text"' ng-change='vm.changed(question.name)' ng-class="question.classes.inputInput" ng-model=vm.inputs[question.name].value type="text" ng-style='question.styles.input.inputWrapper' placeholder={{vm.inputs[question.name].suggestion}}>
-					</div>
+					</span>
 					
-					<!--Input field: Number-->
-					<div ng-if='question.type==="number"' ng-class="question.classes.inputDiv" ng-style='question.styles.input.inputWrapper'>
-					  <span ng-class="question.classes.inputSpan" style='padding-left:5px; padding-right:5px;'>$</span>
-					  <input id={{question.name}} ng-model=vm.inputs[question.name].value type={{question.type}} ng-class="question.classes.inputInput" ng-change='vm.changed(question.name)' style='width:100%; height:56px; text-align:right' placeholder={{vm.inputs[question.name].suggestion}}>
-					  <span ng-class="question.classes.inputSpan" style='padding-left:5px; padding-right:5px;'>.00</span>
-					</div>
+					<!--Input field: Datalist-->
+					<span ng-if='question.datalist' ng-style='question.styles.input.datalist' ng-class='question.classes.input'>
+						<div ng-class="question.classes.inputDiv">
+							<input id={{question.name}} list='eventTypePicker' ng-class="question.classes.inputInput" ng-model=vm.inputs[question.name].value name='eventTypePicker' style='width:100%; height:56px' placeholder={{vm.inputs[question.name].suggestion}}>
+							<datalist name="eventTypePicker" id="eventTypePicker">
+								<option ng-repeat='market in question.listValues' value={{market}}>{{market}}</option>
+							</datalist>	
+						</div>
+					</span>
 
-				</span>
-				
-				<!--Input field: Datalist-->
-				<span ng-if='question.datalist' ng-style='question.styles.input.datalist' ng-class='question.classes.input'>
+					<!--Approval button-->
+					<div style='padding-left:0px; padding-right:0px' ng-class='question.classes.approval'><div ng-class="question.classes.approvalDiv"><a ng-click='vm.approveField(question.name)' ng-class="question.classes.approvalA">{{question.approvals.text}}</a></div></div>
+					
+				</div>
+
+				<!--Input field: Image-->
+				<div ng-if='question.type==="file"'>
 					<div ng-class="question.classes.inputDiv">
-						<input id={{question.name}} list='eventTypePicker' ng-class="question.classes.inputInput" ng-model=vm.inputs[question.name].value name='eventTypePicker' style='width:100%; height:56px' placeholder={{vm.inputs[question.name].suggestion}}>
-						<datalist name="eventTypePicker" id="eventTypePicker">
-							<option ng-repeat='market in question.listValues' value={{market}}>{{market}}</option>
-						</datalist>	
+						<input id={{question.name}} ng-model='vm.uploadedImage.src' type={{question.type}} accept="image/*" onchange="angular.element(this).scope().photoAdded()" ng-class="question.classes.inputInput" style='width:100%; height:56px; text-align:right' >
+						<img src="" id='recieptImage' height="200" alt="Image preview...">
 					</div>
-				</span>
-
-				<!--Approval button-->
-				<div style='padding-left:0px; padding-right:0px' ng-class='question.classes.approval'><div ng-class="question.classes.approvalDiv"><a ng-click='vm.approveField(question.name)' ng-class="question.classes.approvalA">{{question.approvals.text}}</a></div></div>
+				</div>
 			
 			</li>	
 		</ul>

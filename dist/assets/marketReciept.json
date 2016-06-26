@@ -622,6 +622,83 @@
 					"round-button":true
 				}
 			}
+		},
+		{
+			"name":"Photo",
+			"datalist":false,
+			"suggestion":"",
+			"type":"file",
+			"description":"",
+			"approvals": {
+				"addressed":false,
+				"value":null,
+				"text":"OK?"
+			},
+			"styles": {
+				"question": {
+					"padding-left":"0px",
+					"padding-top": "10px",
+					"font-size":"1.5em"
+				},
+				"input": {
+					"datalist": {
+						"height":"56px",
+						"padding-left":"0px",
+						"padding-right":"0px",
+						"font-size":"2em"
+					},
+					"inputWrapper": {
+						"width":"100%",
+						"height":"56px"
+					}
+				}
+			},
+			"classes": {
+				"title": {
+					"col-xs-4":true,
+					"col-sm-4":true,
+					"col-md-4":true,
+					"col-ld-4":true,
+					"form-control-label":true					
+				},
+				"input": {
+					"col-xs-5":true,
+					"col-sm-5":true,
+					"col-md-5":true,
+					"col-ld-5":true
+				},
+				"inputDiv": {
+					"input-group": true,
+					"pull-right": true,
+					"has-success":false,
+					"has-warning":false,
+					"has-danger":false
+				},
+				"inputSpan": {
+					"input-group-addon":true
+				},
+				"inputInput": {
+					"form-control": true,
+					"form-control-warning":false,
+					"form-control-success":false
+				},
+				"approval": {
+					"col-xs-2":true,
+					"col-sm-2":true,
+					"col-md-2":true,
+					"col-ld-2":true,
+					"round-button":true,
+					"pull-right":true			
+				},
+				"approvalDiv": {
+					"round-button-circle-free":true,
+					"round-button-circle-approved":false,
+					"round-button-circle-revised":false
+				},
+				"approvalA": {
+					"round-button":true
+				}
+			}
 		}
 	]
 }

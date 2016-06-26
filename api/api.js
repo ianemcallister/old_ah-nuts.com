@@ -161,10 +161,14 @@ function receiveForm(type, data) {
 	var mailSubject = serverAPI._buildMailSubject(type, data);
 	var mailBody = serverAPI._buildMailBody(type, data);
 	var fromEmployee = ('\"' + data.Name + '\" <employee@ah-nuts.com>'); //'"Nut Slinger" <employee@ah-nuts.com>'
-	var attachements = {
-		name: data.image.name,
-		binary: data.image.binary
-	}
+	var attachements = {};
+	if(data.Photo.binary !== null) {
+		attachements = {
+			name: data.Photo.src,
+			binary: data.Photo.binary
+		}
+	} else attachements = null;
+	
 	//console.log(mailSubject, fromEmployee, mailBody);
 	//return a promise
 	return new Promise(function(resolve, reject) {

@@ -13,12 +13,15 @@ function sendEmail(sendTo, sendFrom, subject, body, attch) {
 	var smtpConfig = {
 		host: mailconfig.nutsMail.host,
 		port: mailconfig.nutsMail.port,
-		secure: true, // use SSL
-		auth: {
+		secure: true // use SSL
+	};
+
+	if(attch !== null) {
+		smtpConfig['auth'] = {
 			user: mailconfig.nutsMail.user,
 			pass: mailconfig.nutsMail.password
 		}
-	};
+	}
 
 	// create reusable transporter object using the default SMTP transport
 	var transporter = nodemailer.createTransport(smtpConfig);

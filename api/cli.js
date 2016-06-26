@@ -14,7 +14,7 @@ fs.readFile('./dist/assets/image.jpg', function(err, data) {
 		Reciepts: 1000,
 		Bank: 6000,
 		Due: 22000,
-		image: {
+		Photo: {
 			name: 'Market_Reciept.jpg',
 			binary: data 
 		}

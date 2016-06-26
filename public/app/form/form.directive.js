@@ -33,6 +33,11 @@ function recieptForm() {
 
 		//set view model values
 		vm.currentDate = new Date();
+		vm.uploadedImage = {
+			src: 'Market_Image.jpg',
+			binary: null
+		};
+
 		vm['inputs'] = {};
 		vm['approvals'] = {};
 		vm['submitBtnClasses'] = {
@@ -70,7 +75,7 @@ function recieptForm() {
 		});
 
 		//list the objects
-		$log.info(vm.inputs);
+		//$log.info(vm.inputs);
 
 		//add suggestion values
 		vm.inputs['Market'].suggestion = 'Surf City';
@@ -81,17 +86,18 @@ function recieptForm() {
 		vm.inputs['Reciepts'].suggestion = 10;
 		vm.inputs['Bank'].suggestion = 60;
 		vm.inputs['Due'].suggestion = 220;
+		vm.inputs['Photo'].suggestion = '';
 
 		function unlockSubmitBtn() {
 			//
-			$log.info('Unlocking btn');
+			//$log.info('Unlocking btn');
 			vm.submitBtnClasses['btn-danger'] = false;
 			vm.submitBtnClasses['btn-success'] = true;
 		}
 
 		function lockSubmitBtn() {
 			//
-			$log.info('Locking btn');
+			//$log.info('Locking btn');
 			vm.submitBtnClasses['btn-danger'] = true;
 			vm.submitBtnClasses['btn-success'] = false;
 		}
@@ -106,11 +112,51 @@ function recieptForm() {
 				if(isApproved) numberOf++;
 			});
 
-			$log.info(numberOf, totalFields,numberOf==totalFields);
+			//$log.info(numberOf, totalFields, numberOf==totalFields);
 			if(numberOf==totalFields) unlockSubmitBtn();
 			else lockSubmitBtn();
 
 			return numberOf;
+		}
+
+		function getPhoto() {
+			var preview = document.getElementById('recieptImage')
+			var file = document.getElementById('Photo').files[0];
+			var reader = new FileReader();
+			var imagebinary = null;
+
+			reader.addEventListener('load', function() {
+				imagebinary = reader.result;
+				preview.src = imagebinary;
+
+			}, false);
+
+			if (file) {
+				//preview the image
+				reader.readAsDataURL(file);
+
+				//save the value to the variable
+				vm.inputs['Photo'] = {
+					src: 'Market_Reciept.jpg',
+					binary: imagebinary
+				};				
+			}
+
+			/*r.onloadend = function(e) {
+				var data = e.target.result;
+				
+				$log.info('got here');
+
+				//save the value to the variable
+				vm.inputs['Photo'] = {
+					src: 'Market_Reciept.jpg',
+					binary: data
+				}
+
+				$log.info('file loaded', vm.inputs['Photo']);
+			}
+			$log.info('got here');
+			r.readAsDataURL(file);*/
 		}
 
 		vm.refreshApprovals = function() {
@@ -144,7 +190,7 @@ function recieptForm() {
 		vm.changed = function(fieldName) {
 			var recordNum = fieldsHash[fieldName];
 			//notify the record being changed
-			$log.info(fieldName);
+			//$log.info(fieldName);
 
 			//update the approval button
 			vm.data.questions[recordNum].approvals.addressed = true;
@@ -186,8 +232,33 @@ function recieptForm() {
 				
 			}
 
-			$log.info(fieldName);
+			//$log.info(fieldName);
 
+		}
+
+		$scope.photoAdded = function() {
+			var recordNum = fieldsHash['Photo'];
+
+			//get the photo
+			getPhoto();
+
+			//update the values
+			$log.info(vm.inputs['Photo']);
+
+			//update the button
+			vm.data.questions[recordNum].approvals.addressed = true;
+			vm.data.questions[recordNum].approvals.value = true;
+
+			//change the input class
+			vm.data.questions[recordNum].classes.inputDiv['has-success'] = true;
+
+			countApproved();
+
+			//notify the user
+			//$log.info('added a photo', vm.uploadedImage);
+
+			//accesssed through jquery so apply these changes
+			$scope.$apply();
 		}
 
 		vm.submitForm = function() {
@@ -196,9 +267,15 @@ function recieptForm() {
 				var deliveryObject = {};
 
 				Object.keys(vm.inputs).forEach(function(key) {
-					if(typeof vm.inputs[key].value == 'number')
-						deliveryObject[key] = vm.inputs[key].value * 100;
-					else deliveryObject[key] = vm.inputs[key].value;
+					if(key !== 'Photo') {
+						//for not photos add values
+						if(typeof vm.inputs[key].value == 'number')
+							deliveryObject[key] = vm.inputs[key].value * 100;
+						else deliveryObject[key] = vm.inputs[key].value;
+					} else {
+						//if it is a photo, copy directly
+						deliveryObject[key] = vm.inputs[key];
+					}
 				});
 
 				//send the values
