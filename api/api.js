@@ -1,6 +1,9 @@
 'use static'
 
 var mailCenter = require('./mailcenter.js');
+var dateFormat = require('dateformat');
+
+var formHash = {'marketReciept':'Market Reciept'};
 
 var api = {
 	_getCurrentTime:_getCurrentTime,
@@ -12,6 +15,8 @@ var api = {
 	_getMarketPayStructure:_getMarketPayStructure,
 	_getEmployeeExpenses:_getEmployeeExpenses,
 	_getMarketBank:_getMarketBank,
+	_buildMailSubject:_buildMailSubject,
+	_buildMailBody:_buildMailBody,
 	supplyGuess:supplyGuess,
 	receiveForm:receiveForm,
 	test: test
@@ -51,6 +56,58 @@ function _getMarketPayStructure() {}
 function _getEmployeeExpenses() {}
 function _getEmployee() {}
 function _getMarketBank() {}
+
+function _buildMailSubject(type, data) {
+	var returnString = '';
+	var marketDate = dateFormat(data.Date, "m/d/yyyy");
+
+	//add the subject
+	returnString += (formHash[type] + ' - ');
+
+	//add the market
+	returnString += (data.Market + ' - ');
+
+	//add the date
+	returnString += marketDate;
+
+	return returnString;
+}
+
+function _buildMailBody(type, data) {
+	var returnObject = {
+		plainText: '',
+		htmlText: ''
+	};
+
+	//build the header
+	returnObject.plainText += (formHash[type] + + "\n");
+	returnObject.htmlText += ("<h1>" + formHash[type] + "</h1>" + "\n");
+
+	//build the content
+	Object.keys(data).forEach(function(key) {
+
+		//add the field
+		returnObject.plainText += (key + ': ');
+		returnObject.htmlText += ("<p><strong>" + key + ': </strong>');
+
+		//add the value
+		console.log(typeof data[key]);
+		if(typeof data[key] == 'number') {
+			returnObject.plainText += ("$" + (parseInt(data[key]) / 100) + '.00');
+			returnObject.htmlText += ("$" + (parseInt(data[key]) / 100) + ".00 </p>");
+		} else {
+			returnObject.plainText += data[key];
+			returnObject.htmlText += (data[key] + "</p>");
+		}
+
+		//return a line
+		returnObject.plainText += "\n";
+		returnObject.htmlText += "\n";
+
+	});
+
+	return returnObject;
+}
 
 function supplyGuess(gps) {
 	//looking for current market
@@ -98,13 +155,24 @@ function supplyGuess(gps) {
 }
 
 function receiveForm(type, data) {
+	var serverAPI = this;
 
+	var mailSubject = serverAPI._buildMailSubject(type, data);
+	var mailBody = serverAPI._buildMailBody(type, data);
+	var fromEmployee = ('\"' + data.Name + '\" <employee@ah-nuts.com>'); //'"Nut Slinger" <employee@ah-nuts.com>'
+
+	//console.log(mailSubject, fromEmployee, mailBody);
 	//return a promise
 	return new Promise(function(resolve, reject) {
 
-		//if mail sent & filed to db correctly send affirmative
-
-		//if mail not sent and/or db not written to send error
+		mailCenter.sendEmail('"Ian McAllister" <ian@ah-nuts.com>', fromEmployee, mailSubject, mailBody)
+		.then(function(response) {
+			//if mail sent & filed to db correctly send affirmative
+			resolve(response);
+		}).catch(function(err) {
+			//if mail not sent and/or db not written to send error
+			reject(err);
+		})
 
 	});
 

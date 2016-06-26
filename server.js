@@ -95,10 +95,13 @@ app.post('/forms/marketReciept', function(req, res) {
 	console.log('got this', req.body);
 
 	//process the data
-	api.receiveForm('marketReciept', req.body);
+	api.receiveForm('marketReciept', req.body)
+	.then(function(response) {
+		res.send('Success: ' + response);
+	}).catch(function(err) {
+		res.send('Error: ' + err);
+	})
 	
-	//send a response
-	res.send('got it!');
 })
 
 //open the port for local development

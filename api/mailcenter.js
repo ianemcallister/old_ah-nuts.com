@@ -25,11 +25,11 @@ function sendEmail(sendTo, sendFrom, subject, body) {
 
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
-		from: '"Nut Slinger" <employee@ah-nuts.com>', // sender address
+		from: sendFrom, // sender address
 		to: 'ian@ah-nuts.com', // list of receivers
-		subject: 'Market Report', // Subject line
-		text: 'Got this from the market', // plaintext body
-		html: '<b>Got this from the market</b>' // html body
+		subject: subject, // Subject line
+		text: body.plainText, // plaintext body
+		html: body.htmlText // html body
 	};
 
 	//when mailing, return a response
