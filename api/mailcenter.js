@@ -7,7 +7,7 @@ var mailCenter = {
 	sendEmail:sendEmail
 }
 
-function sendEmail(sendTo, sendFrom, subject, body) {
+function sendEmail(sendTo, sendFrom, subject, body, attch) {
 	
 	//define the email settings
 	var smtpConfig = {
@@ -23,13 +23,21 @@ function sendEmail(sendTo, sendFrom, subject, body) {
 	// create reusable transporter object using the default SMTP transport
 	var transporter = nodemailer.createTransport(smtpConfig);
 
+	console.log(body);
+
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
 		from: sendFrom, // sender address
 		to: 'ian@ah-nuts.com', // list of receivers
 		subject: subject, // Subject line
 		text: body.plainText, // plaintext body
-		html: body.htmlText // html body
+		html: body.htmlText, // html body
+		attachments: [
+			{
+				filename: attch.name,
+				content: attch.binary
+			}
+		]
 	};
 
 	//when mailing, return a response

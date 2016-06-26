@@ -86,23 +86,24 @@ function _buildMailBody(type, data) {
 	//build the content
 	Object.keys(data).forEach(function(key) {
 
-		//add the field
-		returnObject.plainText += (key + ': ');
-		returnObject.htmlText += ("<p><strong>" + key + ': </strong>');
+		if(key !== 'image') {
+			//add the field
+			returnObject.plainText += (key + ': ');
+			returnObject.htmlText += ("<p><strong>" + key + ': </strong>');
 
-		//add the value
-		console.log(typeof data[key]);
-		if(typeof data[key] == 'number') {
-			returnObject.plainText += ("$" + (parseInt(data[key]) / 100) + '.00');
-			returnObject.htmlText += ("$" + (parseInt(data[key]) / 100) + ".00 </p>");
-		} else {
-			returnObject.plainText += data[key];
-			returnObject.htmlText += (data[key] + "</p>");
+			//add the value
+			if(typeof data[key] == 'number') {
+				returnObject.plainText += ("$" + (parseInt(data[key]) / 100) + '.00');
+				returnObject.htmlText += ("$" + (parseInt(data[key]) / 100) + ".00 </p>");
+			} else {
+				returnObject.plainText += data[key];
+				returnObject.htmlText += (data[key] + "</p>");
+			}
+
+			//return a line
+			returnObject.plainText += "\n";
+			returnObject.htmlText += "\n";
 		}
-
-		//return a line
-		returnObject.plainText += "\n";
-		returnObject.htmlText += "\n";
 
 	});
 
@@ -160,12 +161,15 @@ function receiveForm(type, data) {
 	var mailSubject = serverAPI._buildMailSubject(type, data);
 	var mailBody = serverAPI._buildMailBody(type, data);
 	var fromEmployee = ('\"' + data.Name + '\" <employee@ah-nuts.com>'); //'"Nut Slinger" <employee@ah-nuts.com>'
-
+	var attachements = {
+		name: data.image.name,
+		binary: data.image.binary
+	}
 	//console.log(mailSubject, fromEmployee, mailBody);
 	//return a promise
 	return new Promise(function(resolve, reject) {
 
-		mailCenter.sendEmail('"Ian McAllister" <ian@ah-nuts.com>', fromEmployee, mailSubject, mailBody)
+		mailCenter.sendEmail('"Ian McAllister" <ian@ah-nuts.com>', fromEmployee, mailSubject, mailBody, attachements)
 		.then(function(response) {
 			//if mail sent & filed to db correctly send affirmative
 			resolve(response);
