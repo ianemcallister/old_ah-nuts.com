@@ -21,10 +21,10 @@ function recieptForm() {
 	function linkFunc(scope, el, attr, ctrl) {
     }
 
-    recieptForm.$inject = ['$scope', '$log'];
+    recieptForm.$inject = ['$scope', '$log', 'backendSrvc'];
     
     /* @ngInject */
-    function recieptForm($scope, $log) {
+    function recieptForm($scope, $log, backendSrvc) {
 		var vm = this;
 
 		//local variables
@@ -192,10 +192,25 @@ function recieptForm() {
 
 		vm.submitForm = function() {
 
-			if(countApproved() == totalFields)
+			if(countApproved() == totalFields) {
+				var deliveryObject = {};
+
+				Object.keys(vm.inputs).forEach(function(key) {
+					if(typeof vm.inputs[key].value == 'number')
+						deliveryObject[key] = vm.inputs[key].value * 100;
+					else deliveryObject[key] = vm.inputs[key].value;
+				});
+
+				//send the values
+				backendSrvc.submitFormData(deliveryObject);
+
+				//notify the user
 				console.log('submitted!');
-			else 
+			} else {
+
+				//notify the user
 				console.log('need to finish the fields');
+			}
 
 			
 		}

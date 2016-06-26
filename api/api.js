@@ -1,5 +1,7 @@
 'use static'
 
+var mailCenter = require('./mailcenter.js');
+
 var api = {
 	_getCurrentTime:_getCurrentTime,
 	_getMarketTimesHash:_getMarketTimesHash,
@@ -9,9 +11,9 @@ var api = {
 	_calculatePay:_calculatePay,
 	_getMarketPayStructure:_getMarketPayStructure,
 	_getEmployeeExpenses:_getEmployeeExpenses,
-	_getEmployee:_getEmployee,
 	_getMarketBank:_getMarketBank,
 	supplyGuess:supplyGuess,
+	receiveForm:receiveForm,
 	test: test
 }
 
@@ -93,6 +95,19 @@ function supplyGuess(gps) {
 	guess['net'] = guess['gross'] - guess['marketFee'] - guess['employeePay'] - guess['expenses']; //45942;
 
 	return guess;
+}
+
+function receiveForm(type, data) {
+
+	//return a promise
+	return new Promise(function(resolve, reject) {
+
+		//if mail sent & filed to db correctly send affirmative
+
+		//if mail not sent and/or db not written to send error
+
+	});
+
 }
 
 function test() {

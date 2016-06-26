@@ -1,5 +1,8 @@
-var api = require('./api');
+//var api = require('./api');
+var mailcenter = require('./mailcenter');
 
-var guess = api.supplyGuess();
+//var guess = api.supplyGuess();
 
-console.log(guess);
+//console.log(guess);
+
+mailcenter.sendEmail();

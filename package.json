@@ -17,7 +17,7 @@
     "url": "https://github.com/ianemcallister/ah-nuts.com/issues"
   },
   "homepage": "https://github.com/ianemcallister/ah-nuts.com#readme",
-  "devDependencies":{
+  "devDependencies": {
     "angular-mocks": "^1.5.0",
     "eslint": "^2.1.0",
     "eslint-config-angular": "^0.4.0",
@@ -45,6 +45,7 @@
     "gulp-jasmine-phantom": "^2.1.0",
     "gulp-sass": "^2.1.1",
     "jquery": "^2.2.2",
-    "karma": "^0.13.19"
+    "karma": "^0.13.19",
+    "nodemailer": "^2.4.2"
   }
 }

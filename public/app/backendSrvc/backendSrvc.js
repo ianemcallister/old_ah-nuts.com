@@ -12,7 +12,8 @@ function backendSrvc($log, $http) {
 		_get:_get,
 		_post:_post,
 		getFormData:getFormData,
-		loadAllForms:loadAllForms
+		loadAllForms:loadAllForms,
+		submitFormData:submitFormData
 	};
 
 	function _get(filename) {
@@ -35,7 +36,21 @@ function backendSrvc($log, $http) {
 
 	}
 
-	function _post() {
+	function _post(data) {
+
+		$log.info('got this in _post', data);
+
+		return new Promise(function(resolve, reject) {
+
+			var result = $http.post('forms/marketReciept', data)
+			.then(function successCallback(response) {
+				resolve('success');
+			}, function errorCallback(response) {
+				resolve('error');
+			});
+
+			console.log(result);
+		});
 
 	}
 
@@ -77,6 +92,20 @@ function backendSrvc($log, $http) {
 			});
 
 		});
+
+	}
+
+	function submitFormData(data) {
+		var service = this;
+
+		//notify the user
+		$log.info('got this', data);
+
+		//submit form
+		service._post(data).then(function(response) {
+			console.log('response:', response);
+		});
+
 
 	}
 

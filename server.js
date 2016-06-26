@@ -15,6 +15,10 @@ var jsonParser = bodyParser.json();
 //tell it the folder to serve
 app.use(express.static('dist'));
 
+//define our body parsers
+app.use(jsonParser); // for parsing application/json
+app.use(urlencodedParser); // for parsing application/x-www-form-urlencoded
+
 //connecting middleware
 //app.use('/assets', express.static(__dirname + '/public'));
 
@@ -85,6 +89,17 @@ app.get('/assets/:name', function(req, res) {
 	//send back
 	res.send(guess);
 })*/
+
+app.post('/forms/marketReciept', function(req, res) {
+	//notify the user
+	console.log('got this', req.body);
+
+	//process the data
+	api.receiveForm('marketReciept', req.body);
+	
+	//send a response
+	res.send('got it!');
+})
 
 //open the port for local development
 app.listen(port,function() {
