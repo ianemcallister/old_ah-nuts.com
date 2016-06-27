@@ -1,5 +1,5 @@
 angular
-    .module('marketReciept')
+    .module('marketReceipt')
     .controller('successController', successController);
 
 successController.$inject = ['$log'];

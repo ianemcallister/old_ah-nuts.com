@@ -1,4 +1,4 @@
 angular
-	.module('marketReciept', [
+	.module('marketReceipt', [
 		'ngRoute'
 	]);

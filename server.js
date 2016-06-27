@@ -90,12 +90,12 @@ app.get('/assets/:name', function(req, res) {
 	res.send(guess);
 })*/
 
-app.post('/forms/marketReciept', function(req, res) {
+app.post('/forms/marketReceipt', function(req, res) {
 	//notify the user
 	console.log('got this', req.body);
 
 	//process the data
-	api.receiveForm('marketReciept', req.body)
+	api.receiveForm('marketReceipt', req.body)
 	.then(function(response) {
 		res.send('Success: ' + response);
 	}).catch(function(err) {

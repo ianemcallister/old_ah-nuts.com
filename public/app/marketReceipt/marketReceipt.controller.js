@@ -1,11 +1,11 @@
 angular
-    .module('marketReciept')
-    .controller('marketRecieptController', marketRecieptController);
+    .module('marketReceipt')
+    .controller('marketReceiptController', marketReceiptController);
 
-marketRecieptController.$inject = ['$log', 'backendSrvc', 'formData'];
+marketReceiptController.$inject = ['$log', 'backendSrvc', 'formData'];
 
 /* @ngInject */
-function marketRecieptController($log, backendSrvc, formData) {
+function marketReceiptController($log, backendSrvc, formData) {
 	var vm = this;
 	vm.data = formData;
 

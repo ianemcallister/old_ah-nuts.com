@@ -1,5 +1,5 @@
 angular
-    .module('marketReciept')
+    .module('marketReceipt')
     .factory('backendSrvc', backendSrvc);
 
 backendSrvc.$inject = ['$log', '$http'];
@@ -57,7 +57,7 @@ function backendSrvc($log, $http) {
 	function getFormData(form) {
 		var service = this;
 
-		service.allForms = {"marketReciept":'marketReciept.json'};
+		service.allForms = {"marketReceipt":'marketReceipt.json'};
 
 		var url = service.allForms[form];
 		
@@ -79,7 +79,7 @@ function backendSrvc($log, $http) {
 	function loadAllForms() {
 		var service = this;
 
-		service.allForms = {"marketReciept":'marketReciept.json'};
+		service.allForms = {"marketReceipt":'marketReceipt.json'};
 	
 		console.log(service.allForms);
 

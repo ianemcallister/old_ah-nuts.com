@@ -1,5 +1,5 @@
 angular
-    .module('marketReciept')
+    .module('marketReceipt')
     .controller('landingController', landingController);
 
 landingController.$inject = ['$log', '$location'];

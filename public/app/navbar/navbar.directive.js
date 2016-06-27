@@ -1,5 +1,5 @@
 angular
-	.module('marketReciept')
+	.module('marketReceipt')
 	.directive('navbar', navbar);
 
 /* @ngInject */

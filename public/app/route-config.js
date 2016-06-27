@@ -1,5 +1,5 @@
 angular
-	.module('marketReciept')
+	.module('marketReceipt')
 	.config(config);
 /* @ngInject */
 function config($routeProvider) {
@@ -9,18 +9,18 @@ function config($routeProvider) {
         controller: 'landingController',
         controllerAs: 'vm',
         resolve: {	/* @ngInject */
-        	loadData:loadData
+            loadData:loadData
         }
     })
-    .when('/marketReciept', {
-        templateUrl: 'app/marketReciept/marketReciept.htm',
-        controller: 'marketRecieptController',
+    .when('/marketReceipt', {
+        templateUrl: 'app/marketReceipt/marketReceipt.htm',
+        controller: 'marketReceiptController',
         controllerAs: 'vm',
         resolve: { /* @ngInject */
-        	formData: function(backendSrvc) {
-        		//return {'resolveTest':'good test'};
-        		return backendSrvc.getFormData('marketReciept');
-        	}
+            formData: function(backendSrvc) {
+                //return {'resolveTest':'good test'};
+                return backendSrvc.getFormData('marketReceipt');
+            }
         }
     })
     .when('/success', {

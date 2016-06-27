@@ -1,5 +1,5 @@
 angular
-	.module('marketReciept')
+	.module('marketReceipt')
 	.directive('recieptForm', recieptForm);
 
 /* @ngInject */
