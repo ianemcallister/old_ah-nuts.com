@@ -161,27 +161,27 @@ function receiveForm(type, data) {
 	var mailSubject = serverAPI._buildMailSubject(type, data);
 	var mailBody = serverAPI._buildMailBody(type, data);
 	var fromEmployee = ('\"' + data.Name + '\" <employee@ah-nuts.com>'); //'"Nut Slinger" <employee@ah-nuts.com>'
-	var attachements = {};
+	/*var attachements = {};
 	if(data.Photo.binary !== null) {
 		attachements = {
 			name: data.Photo.src,
 			binary: data.Photo.binary
 		}
-	} else attachements = null;
+	} else attachements = null;*/
 	
 	//console.log(mailSubject, fromEmployee, mailBody);
 	//return a promise
 	return new Promise(function(resolve, reject) {
 
-		/*mailCenter.sendEmail('"Ian McAllister" <ian@ah-nuts.com>', fromEmployee, mailSubject, mailBody, attachements)
+		mailCenter.sendEmail('"Ian McAllister" <ian@ah-nuts.com>', fromEmployee, mailSubject, mailBody/*, attachements*/)
 		.then(function(response) {
 			//if mail sent & filed to db correctly send affirmative
 			resolve(response);
 		}).catch(function(err) {
 			//if mail not sent and/or db not written to send error
 			reject(err);
-		})*/
-		resolve('good test');
+		})
+		
 	});
 
 }

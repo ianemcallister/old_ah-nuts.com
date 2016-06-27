@@ -86,7 +86,6 @@ function recieptForm() {
 		vm.inputs['Reciepts'].suggestion = 10;
 		vm.inputs['Bank'].suggestion = 60;
 		vm.inputs['Due'].suggestion = 220;
-		vm.inputs['Photo'].suggestion = '';
 
 		function unlockSubmitBtn() {
 			//

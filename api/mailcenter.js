@@ -23,8 +23,6 @@ function sendEmail(sendTo, sendFrom, subject, body, attch) {
 	// create reusable transporter object using the default SMTP transport
 	var transporter = nodemailer.createTransport(smtpConfig);
 
-	console.log(body);
-
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
 		from: sendFrom, // sender address
@@ -34,7 +32,7 @@ function sendEmail(sendTo, sendFrom, subject, body, attch) {
 		html: body.htmlText // html body
 	};
 
-	if(attch!==null) {
+	if(typeof attch !== 'undefined') {
 		mailOptions['attachments'] = [
 			{
 				filename: attch.name,
