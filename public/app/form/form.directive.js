@@ -21,10 +21,10 @@ function recieptForm() {
 	function linkFunc(scope, el, attr, ctrl) {
     }
 
-    recieptForm.$inject = ['$scope', '$log', 'backendSrvc'];
+    recieptForm.$inject = ['$scope', '$log', '$location', 'backendSrvc'];
     
     /* @ngInject */
-    function recieptForm($scope, $log, backendSrvc) {
+    function recieptForm($scope, $log, $location, backendSrvc) {
 		var vm = this;
 
 		//local variables
@@ -278,10 +278,20 @@ function recieptForm() {
 				});
 
 				//send the values
-				backendSrvc.submitFormData(deliveryObject);
+				backendSrvc.submitFormData(deliveryObject)
+				.then(function(response) {
+					//notify the user
+					$log.info('submitted!', response);
 
-				//notify the user
-				console.log('submitted!');
+					//if successful, redirect
+					$location.path('/success');
+					$scope.$apply();
+
+				}).catch(function(error) {
+					$log.info('Error:', error);
+				});
+
+				
 			} else {
 
 				//notify the user
@@ -290,6 +300,9 @@ function recieptForm() {
 
 			
 		}
+
+		//automatically run the refresh
+		vm.refreshApprovals();
 	}
 
 	return directive;

@@ -101,11 +101,21 @@ function backendSrvc($log, $http) {
 		//notify the user
 		$log.info('got this', data);
 
-		//submit form
-		service._post(data).then(function(response) {
-			console.log('response:', response);
-		});
+		
+		return new Promise(function(resolve, reject) {
 
+			//submit form
+			service._post(data).then(function(response) {
+				//notify the user
+				//console.log('response:', response);
+				//when success is achieved redirect
+				resolve(response);
+			}).catch(function(err) {
+				//console.log('Error:', err);
+				reject(err);
+			});
+
+		});
 
 	}
 

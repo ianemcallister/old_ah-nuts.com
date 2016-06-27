@@ -16,12 +16,17 @@ function config($routeProvider) {
         templateUrl: 'app/marketReciept/marketReciept.htm',
         controller: 'marketRecieptController',
         controllerAs: 'vm',
-        resolve: {
+        resolve: { /* @ngInject */
         	formData: function(backendSrvc) {
         		//return {'resolveTest':'good test'};
         		return backendSrvc.getFormData('marketReciept');
         	}
         }
+    })
+    .when('/success', {
+        templateUrl: 'app/success/success.htm',
+        controller: 'successController',
+        controllerAs: 'vm'
     })
     .otherwise({
         redirectTo: '/'
