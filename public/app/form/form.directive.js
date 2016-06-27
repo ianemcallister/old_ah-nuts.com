@@ -84,9 +84,6 @@ function recieptForm() {
 		vm.inputs['Bank'].suggestion = 60;
 		vm.inputs['Due'].suggestion = 220;
 
-		//automatically run the refresh
-		vm.refreshApprovals();
-
 		function unlockSubmitBtn() {
 			//
 			//$log.info('Unlocking btn');
@@ -298,6 +295,8 @@ function recieptForm() {
 			}
 		}
 
+		//automatically run the refresh
+		vm.refreshApprovals();
 	}
 
 	return directive;
