@@ -26,7 +26,7 @@ function sendEmail(sendTo, sendFrom, subject, body, attch) {
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
 		from: sendFrom, // sender address
-		to: 'ian@ah-nuts.com', // list of receivers
+		to: 'ian@ah-nuts.com, steve@ah-nuts.com', // list of receivers
 		subject: subject, // Subject line
 		text: body.plainText, // plaintext body
 		html: body.htmlText // html body

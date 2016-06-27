@@ -74,10 +74,7 @@ function recieptForm() {
 
 		});
 
-		//list the objects
-		//$log.info(vm.inputs);
-
-		//add suggestion values
+		//get suggested values
 		vm.inputs['Market'].suggestion = 'Surf City';
 		vm.inputs['Name'].suggestion = 'Ahmed';
 		vm.inputs['Gross'].suggestion = 415;
@@ -86,6 +83,9 @@ function recieptForm() {
 		vm.inputs['Reciepts'].suggestion = 10;
 		vm.inputs['Bank'].suggestion = 60;
 		vm.inputs['Due'].suggestion = 220;
+
+		//automatically run the refresh
+		vm.refreshApprovals();
 
 		function unlockSubmitBtn() {
 			//
@@ -232,7 +232,6 @@ function recieptForm() {
 			}
 
 			//$log.info(fieldName);
-
 		}
 
 		$scope.photoAdded = function() {
@@ -297,12 +296,8 @@ function recieptForm() {
 				//notify the user
 				console.log('need to finish the fields');
 			}
-
-			
 		}
 
-		//automatically run the refresh
-		vm.refreshApprovals();
 	}
 
 	return directive;
