@@ -13,15 +13,12 @@ function sendEmail(sendTo, sendFrom, subject, body, attch) {
 	var smtpConfig = {
 		host: mailconfig.nutsMail.host,
 		port: mailconfig.nutsMail.port,
-		secure: true // use SSL
-	};
-
-	if(attch !== null) {
-		smtpConfig['auth'] = {
+		secure: true, // use SSL
+		auth: {
 			user: mailconfig.nutsMail.user,
-			pass: mailconfig.nutsMail.password
+			pass: mailconfig.nutsMail.password			
 		}
-	}
+	};
 
 	// create reusable transporter object using the default SMTP transport
 	var transporter = nodemailer.createTransport(smtpConfig);
@@ -34,14 +31,17 @@ function sendEmail(sendTo, sendFrom, subject, body, attch) {
 		to: 'ian@ah-nuts.com', // list of receivers
 		subject: subject, // Subject line
 		text: body.plainText, // plaintext body
-		html: body.htmlText, // html body
-		attachments: [
+		html: body.htmlText // html body
+	};
+
+	if(attch!==null) {
+		mailOptions['attachments'] = [
 			{
 				filename: attch.name,
 				content: attch.binary
 			}
 		]
-	};
+	}
 
 	//when mailing, return a response
 	return new Promise(function(resolve, reject) {
