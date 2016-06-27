@@ -1,7 +1,7 @@
 'use static'
 
 var nodemailer = require('nodemailer');
-var mailconfig = require('./mailconfig');
+//var mailconfig = require('./mailconfig');
 
 var mailCenter = {
 	sendEmail:sendEmail

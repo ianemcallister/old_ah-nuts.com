@@ -1,6 +1,6 @@
 'use static'
 
-//var mailCenter = require('./mailcenter.js');
+var mailCenter = require('./mailcenter.js');
 var dateFormat = require('dateformat');
 
 var formHash = {'marketReciept':'Market Reciept'};
