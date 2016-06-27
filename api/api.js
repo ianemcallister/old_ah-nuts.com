@@ -173,15 +173,15 @@ function receiveForm(type, data) {
 	//return a promise
 	return new Promise(function(resolve, reject) {
 
-		mailCenter.sendEmail('"Ian McAllister" <ian@ah-nuts.com>', fromEmployee, mailSubject, mailBody, attachements)
+		/*mailCenter.sendEmail('"Ian McAllister" <ian@ah-nuts.com>', fromEmployee, mailSubject, mailBody, attachements)
 		.then(function(response) {
 			//if mail sent & filed to db correctly send affirmative
 			resolve(response);
 		}).catch(function(err) {
 			//if mail not sent and/or db not written to send error
 			reject(err);
-		})
-
+		})*/
+		resolve('good test');
 	});
 
 }
