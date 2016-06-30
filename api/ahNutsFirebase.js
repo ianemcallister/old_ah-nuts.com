@@ -3,17 +3,21 @@
 //setting up firebase
 var firebase = require("firebase");
 var environment = process.env.NODE_ENV;
+var FIREBASE_ID = null;
+var FIREBASE_EMAIL = null;
+var FIREBASE_KEY = null;
+var FIREBASE_DB = null;
 if(typeof process.env.NODE_ENV == 'undefined') { //undefined means development
 	var AH_NUTS_SECRETS = require('./env.js');
-	var FIREBASE_ID = AH_NUTS_SECRETS.FIREBASE_ID;
-	var FIREBASE_EMAIL = AH_NUTS_SECRETS.FIREBASE_EMAIL;
-	var FIREBASE_KEY = AH_NUTS_SECRETS.FIREBASE_KEY;
-	var FIREBASE_DB = AH_NUTS_SECRETS.FIREBASE_DB;
+	FIREBASE_ID = AH_NUTS_SECRETS.FIREBASE_ID;
+	FIREBASE_EMAIL = AH_NUTS_SECRETS.FIREBASE_EMAIL;
+	FIREBASE_KEY = AH_NUTS_SECRETS.FIREBASE_KEY;
+	FIREBASE_DB = AH_NUTS_SECRETS.FIREBASE_DB;
 } else {							//this is production, pull from the env
-	var FIREBASE_ID = process.env.AH_NUTS_FIREBASE_ID;
-	var FIREBASE_EMAIL = process.env.AH_NUTS_FIREBASE_EMAIL;
-	var FIREBASE_KEY = process.env.AH_NUTS_FIREBASE_KEY;
-	var FIREBASE_DB = process.env.AH_NUTS_FIREBASE_DB;
+	FIREBASE_ID = process.env.AH_NUTS_FIREBASE_ID;
+	FIREBASE_EMAIL = process.env.AH_NUTS_FIREBASE_EMAIL;
+	FIREBASE_KEY = process.env.AH_NUTS_FIREBASE_KEY;
+	FIREBASE_DB = process.env.AH_NUTS_FIREBASE_DB;
 }
 
 console.log('environment', environment);

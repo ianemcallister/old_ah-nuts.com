@@ -22,6 +22,8 @@ function backendSrvc($log, $http) {
 	function _get(dir, filename) {
 		var thisResponse = null;
 
+		console.log("dir", dir, "filename", filename);
+
 		return new Promise(function(resolve, reject) {
 
 			$http({
