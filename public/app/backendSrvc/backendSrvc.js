@@ -743,7 +743,7 @@ function backendSrvc($log, $http) {
 
 	function getFormData(form) {
 		var service = this;
-		//return service._placeholders('formData');
+		return service._placeholders('formData');
 		service.allForms = {"marketReceipt":'marketReceipt.json'};
 
 		var url = service.allForms[form];
