@@ -9,6 +9,7 @@ function backendSrvc($log, $http) {
 	var service = this;
 
 	var backendSrvc = {
+		_placeholders:_placeholders,
 		_get:_get,
 		_post:_post,
 		_buildPossibleMarkets:_buildPossibleMarkets,
@@ -18,6 +19,655 @@ function backendSrvc($log, $http) {
 		getSuggestionData:getSuggestionData,
 		submitFormData:submitFormData
 	};
+
+	function _placeholders(which) {
+		if(which=='formData') {
+			return {
+				title:"Market Reciept",
+				questions: [
+					{
+						"name":"Market",
+						"datalist":true,
+						"type":"text",
+						"listName":"marketNameInput",
+						"suggestion":"",
+						"listValues": [
+							"Anaheim Promenade",
+							"Twila Reid",
+							"Hunington Beach Pier",
+							"Irvine Great Park",
+							"Bixby Park - Tuesday",
+							"Bixby Park - Saturday",
+							"Irvine - Discovery",
+							"Monrovia Street Fair",
+							"Surf City Nights - Hunington"
+						],
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true					
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					},
+					{
+						"name":"Name",
+						"datalist":false,
+						"suggestion":"",
+						"type":"text",
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true					
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					},
+					{
+						"name":"Gross",
+						"datalist":false,
+						"suggestion":"",
+						"type":"number",
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true					
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					},
+					{
+						"name":"Fee",
+						"datalist":false,
+						"suggestion":"",
+						"type":"number",
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true					
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					},
+					{
+						"name":"Pay",
+						"datalist":false,
+						"suggestion":"",
+						"type":"number",
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true					
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					},
+					{
+						"name":"Reciepts",
+						"datalist":false,
+						"suggestion":"",
+						"type":"number",
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true					
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					},
+					{
+						"name":"Bank",
+						"datalist":false,
+						"suggestion":"",
+						"type":"number",
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true				
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					},
+					{
+						"name":"Due",
+						"datalist":false,
+						"suggestion":"",
+						"type":"number",
+						"description":"$ should be returned to Ah-Nuts",
+						"approvals": {
+							"addressed":false,
+							"value":null,
+							"text":"OK?"
+						},
+						"styles": {
+							"question": {
+								"padding-left":"0px",
+								"padding-top": "10px",
+								"font-size":"1.5em"
+							},
+							"input": {
+								"datalist": {
+									"height":"56px",
+									"padding-left":"0px",
+									"padding-right":"0px",
+									"font-size":"2em"
+								},
+								"inputWrapper": {
+									"width":"100%",
+									"height":"56px"
+								}
+							}
+						},
+						"classes": {
+							"title": {
+								"col-xs-4":true,
+								"col-sm-4":true,
+								"col-md-4":true,
+								"col-ld-4":true,
+								"form-control-label":true					
+							},
+							"input": {
+								"col-xs-5":true,
+								"col-sm-5":true,
+								"col-md-5":true,
+								"col-ld-5":true
+							},
+							"inputDiv": {
+								"input-group": true,
+								"pull-right": true,
+								"has-success":false,
+								"has-warning":false,
+								"has-danger":false
+							},
+							"inputSpan": {
+								"input-group-addon":true
+							},
+							"inputInput": {
+								"form-control": true,
+								"form-control-warning":false,
+								"form-control-success":false
+							},
+							"approval": {
+								"col-xs-2":true,
+								"col-sm-2":true,
+								"col-md-2":true,
+								"col-ld-2":true,
+								"round-button":true,
+								"pull-right":true			
+							},
+							"approvalDiv": {
+								"round-button-circle-free":true,
+								"round-button-circle-approved":false,
+								"round-button-circle-revised":false
+							},
+							"approvalA": {
+								"round-button":true
+							}
+						}
+					}
+				],
+				anotherTest:8375
+			}
+		}
+		if(which=='marketPossibilities') {
+			return {
+				reports_due: [
+					{
+						employee:"Kevin Luna",
+						name:"Bixby Park - Tuesday"
+					}
+				],
+				reports_past_due: [
+					{
+						dueDate:"06/28/16",
+						employee:"Kevin Luna",
+						name:"Bixby Park - Tuesday"
+					}
+				]
+			}
+		}
+	}
 
 	function _get(dir, filename) {
 		var thisResponse = null;
@@ -93,18 +743,20 @@ function backendSrvc($log, $http) {
 
 	function getFormData(form) {
 		var service = this;
-		return 'test';
+		return service._placeholders('formData');
 		service.allForms = {"marketReceipt":'marketReceipt.json'};
 
 		var url = service.allForms[form];
 		
 		return new Promise(function(resolve, rej) {
 			//check for existing values
-			if(typeof service[form] !== 'undefined')
+			if(typeof service[form] !== 'undefined') {
+				$log.info('service[form]',service[form]);
 				resolve(service[form]);
-			else { 
+			} else { 
 				service._get('assets/', url).then(function(response) {
 					service[form] = response;
+					$log.info('service[form]',service[form]);
 					resolve(service[form]);
 				});
 			}
@@ -115,13 +767,14 @@ function backendSrvc($log, $http) {
 
 	function getPossibleMarkets() {
 		var service = this;
-		return 'test';
+		return service._placeholders('marketPossibilities');
 		return new Promise(function(resolve, reject) {
 			//collect the resources
 			service._get("/db/form/", 'market_receipts/due').then(function(response) {
 				//from the response build the returnable object
 				var possibleMarketsList = service._buildPossibleMarkets(response);
 				//return the possibleMarketsList
+				$log.info("possibleMarketsList", possibleMarketsList);
 				resolve(possibleMarketsList);
 			}).catch(function(error) {
 				reject(error);
