@@ -38,6 +38,11 @@ firebase.initializeApp({
 
 var rootParent = firebase.database().ref();
 
+rootParenton("value", function(snapshot) {
+	var values = snapshot.val();
+	console.log(values);
+});
+
 var ahNutsFirebase = {
 	_currentDateTime:_currentDateTime,
 	_addToList:_addToList,
