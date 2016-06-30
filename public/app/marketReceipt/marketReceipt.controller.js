@@ -8,6 +8,8 @@ marketReceiptController.$inject = ['$log', 'backendSrvc', 'formData', 'marketPos
 function marketReceiptController($log, backendSrvc, formData, marketPossibilities, suggestions, searchParams) {
 	var vm = this;
 
+	$log.info('in the marketReceiptController');
+
 	//local variables
 	vm.data = formData;
 	vm.possibleMarkets = marketPossibilities;

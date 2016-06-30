@@ -93,7 +93,7 @@ function backendSrvc($log, $http) {
 
 	function getFormData(form) {
 		var service = this;
-
+		return 'test';
 		service.allForms = {"marketReceipt":'marketReceipt.json'};
 
 		var url = service.allForms[form];
@@ -115,7 +115,7 @@ function backendSrvc($log, $http) {
 
 	function getPossibleMarkets() {
 		var service = this;
-
+		return 'test';
 		return new Promise(function(resolve, reject) {
 			//collect the resources
 			service._get("/db/form/", 'market_receipts/due').then(function(response) {
