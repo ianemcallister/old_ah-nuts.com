@@ -2,14 +2,34 @@
 
 //setting up firebase
 var firebase = require("firebase");
+var environment = process.env.NODE_ENV;
+if(typeof process.env.NODE_ENV == 'undefined') { //undefined means development
+	var AH_NUTS_SECRETS = require('./env.js');
+	var FIREBASE_ID = AH_NUTS_SECRETS.FIREBASE_ID;
+	var FIREBASE_EMAIL = AH_NUTS_SECRETS.FIREBASE_EMAIL;
+	var FIREBASE_KEY = AH_NUTS_SECRETS.FIREBASE_KEY;
+	var FIREBASE_DB = AH_NUTS_SECRETS.FIREBASE_DB;
+} else {							//this is production, pull from the env
+	var FIREBASE_ID = process.env.AH_NUTS_FIREBASE_ID;
+	var FIREBASE_EMAIL = process.env.AH_NUTS_FIREBASE_EMAIL;
+	var FIREBASE_KEY = process.env.AH_NUTS_FIREBASE_KEY;
+	var FIREBASE_DB = process.env.AH_NUTS_FIREBASE_DB;
+}
 
+console.log('environment', environment);
+console.log(FIREBASE_ID);
+console.log(FIREBASE_EMAIL);
+console.log(FIREBASE_KEY);
+console.log(FIREBASE_DB);
+
+//initialize the connection
 firebase.initializeApp({
   serviceAccount: {
-    projectId: "ah-nuts",
-    clientEmail: "ah-nuts-server@ah-nuts.iam.gserviceaccount.com",
-    privateKey: "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQD5HZUTXe0nD69B\n1jermo93u16LNitpbIrpOl/D/gg8LVNLBwmvRaA9fFmPtu/17M+hf+97aFvb9wvp\nuUN0vAyuOEKB2fbRrk1opUqa2ZRMD3WzvJsA+KnS0rF+Q8iZeJsuXaT3ubXoaebA\nmX/6M6kLJKqQ5Evy574w7w+SazEjx2I5H+zkmM77c6js5HSJpqQeYF2k8IvwU5TW\nxlImLXNyzJEIBl8rnntkGipd5ApdvQ+G5u5RndTqyofGQ9OLzAf3KVxL1HpzWL53\nF1oLG8mRlBiuszQhYei4uqiT322avKYaVvxUCbwOr4X6JTOr6FbKhgXNZaemYEn3\nkOwvBrXjAgMBAAECggEABylOi8v7cVAGHcJmv0wmK677PM1F2jYAmEvRTPUUj4ZO\nCq4dHSjHPn1Apd0AcPVp0p6257lMSrqDYSiuQ8DULH35i3oUmlqEZym5R1JR7Q3U\nuGIHorODTkg4SgTw01igPWj7wRNZo2DH/WlsQGkTxvo63QdzF3yJ/yYgMHlcZEbc\nivxYsn+Tp6wfbuMxLG03RIoiomsnb2zLVp6uemojo98EU7m2aeTOLJ/3zTxuKPw1\nZwJlLw6oB96P9/zwk30x6EyUz5joP4wLkEH2s+2l2QJSpV93/VaU1dja0YN9/Cfi\np270pZsB4m3LT8lKpukDh0J54s3yKtzi2xPANJUugQKBgQD9co1bQXRXy64AIttK\nI9gNhARMpx//AQ8kIxazOn1+vm8WHS76p9iPhf2RauMWAdpxfQv1w4KxdHkirm2r\nv7QQ5zlrlL4RaIU39Q1I6t+iJayIq+CW3HTOSQk/ips8RlxJFE0ING8Fjcis209w\nWMRThXJoGd9PcMJzKfpHtI8XMQKBgQD7n9yIAsP4GprXqrK8qFX3p8HRUuerkKm0\nLbRdAVgrU8zgLwxeC8KmpUtIWBFXoa2SL+330HANYMSk4ed4uV+FQzviBAjX3AsV\n9Q8ZkLJmpyAizdBBTdEWksrdknbO/+BA2laUYwxg+Zua8aP4kA+SLfnqKgkzrvN7\nfvd8wXsBUwKBgQD3pIqCdD5d2uK1t1lV5BgjfK9GxrX40Owefzqa/bfJtAGPNgzF\nVmPAOUg+YpZo1n6/DVQ2W0bEZe5G+PCoNLSZH5V3jOr6z4n71zGX4geJxA4FrQvR\n3K81MSAcOi7cglOCBJgQQEuKvbMrU08Xk2Shx262UTFlyeP16zpl/gMiwQKBgQCU\nB3D6xv25CRXNCMwL9tBUWOnKFobaRMnBiR3RlUfkfXFK9gLFlQ+XcCjAz6asMh5l\noTLTFlnFVQd6pLfDKvMJ+ArTpWH6c6ZF7ZxLgvehMnLSZtg8guYd7I/SGCczEg9A\nt/I1a6vNpSqo1b2MLlwquEeNPduZ/zOYlJJOX5jYpwKBgQDaEofcVi3kjy3enixv\nNEmh1pBRjbkumpcNNq8ITZot1ZxcAIe8uHyv8A+awxsBJR4R9IyY2z19z+CevWYg\n6nKz4Arlo93nquaGRbZT5peAByESE2EB2ZG2WjC4i8BUJ1zMNkESMjR1ybz7M2Pk\nJu3FURgHGRVCbVApyUgqKvtN8Q==\n-----END PRIVATE KEY-----\n"
+    projectId: FIREBASE_ID,
+    clientEmail: FIREBASE_EMAIL,
+    privateKey: FIREBASE_KEY
   },
-  databaseURL: "https://ah-nuts.firebaseio.com"
+  databaseURL: FIREBASE_DB
 });
 
 var rootParent = firebase.database().ref();

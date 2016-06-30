@@ -5,3 +5,5 @@ coverage/
 .idea/
 .tmp/
 api/serviceAccountCredentials.json
+api/env.js
+api/mailconfig.js
