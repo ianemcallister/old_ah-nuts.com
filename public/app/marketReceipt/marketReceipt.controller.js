@@ -2,13 +2,24 @@ angular
     .module('marketReceipt')
     .controller('marketReceiptController', marketReceiptController);
 
-marketReceiptController.$inject = ['$log', 'backendSrvc', 'formData'];
+marketReceiptController.$inject = ['$log', 'backendSrvc', 'formData', 'marketPossibilities', 'suggestions', 'searchParams'];
 
 /* @ngInject */
-function marketReceiptController($log, backendSrvc, formData) {
+function marketReceiptController($log, backendSrvc, formData, marketPossibilities, suggestions, searchParams) {
 	var vm = this;
-	vm.data = formData;
 
+	//local variables
+	vm.data = formData;
+	vm.possibleMarkets = marketPossibilities;
+	vm.suggestions = suggestions;
+
+	$log.info('searchParams', searchParams, Object.keys(searchParams).length);
+	$log.info('suggestions', suggestions);
+
+	//if a market has been selected, show the prefilled market
+	if(Object.keys(searchParams).length == 0) vm.showForm = false;
+	else vm.showForm = true;
+	
 	var titleClasses = {
 		'col-xs-5':true,
 		'col-sm-5':true,

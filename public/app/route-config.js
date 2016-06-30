@@ -16,11 +16,20 @@ function config($routeProvider) {
         templateUrl: 'app/marketReceipt/marketReceipt.htm',
         controller: 'marketReceiptController',
         controllerAs: 'vm',
+        reloadOnSearch: true,
         resolve: { /* @ngInject */
             formData: function(backendSrvc) {
                 //return {'resolveTest':'good test'};
                 return backendSrvc.getFormData('marketReceipt');
-            }
+            },
+            marketPossibilities: function(backendSrvc/*, $routeParams*/) {
+                //return {1:'Something', 2:'something else'}
+                return backendSrvc.getPossibleMarkets();
+            },
+            suggestions: function(backendSrvc, $routeParams) {
+                return backendSrvc.getSuggestionData($routeParams);
+            },
+            searchParams: function($routeParams) { return $routeParams; }
         }
     })
     .when('/success', {

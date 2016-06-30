@@ -1,0 +1,8 @@
+<div class='container'>
+	<h3 style='text-align: center; padding-top: 60px;'>Which market did you work?</h3>
+	<ul style='list-style:none; text-align: center; padding-top: 20px; padding-left: 0px'>
+		<li ng-repeat='option in vm.data track by $index' style='padding-top: 10px' ng-click='vm.selectOption($index)'>
+			{{option}}
+		</li>
+	</ul>
+</div>

@@ -9,7 +9,8 @@ function recieptForm() {
 		templateUrl: 'app/form/form.directive.htm',
 		replace: true,
 		scope: {
-			data: '='
+			data: '=',
+			suggestions: '='
 		},
 		link: linkFunc,
 		controller: recieptForm,
@@ -33,10 +34,6 @@ function recieptForm() {
 
 		//set view model values
 		vm.currentDate = new Date();
-		vm.uploadedImage = {
-			src: 'Market_Image.jpg',
-			binary: null
-		};
 
 		vm['inputs'] = {};
 		vm['approvals'] = {};
@@ -54,18 +51,6 @@ function recieptForm() {
 		Object.keys(vm.data.questions).forEach(function(key) {
 			var name = vm.data.questions[key].name;
 
-			//add approval values
-			vm.approvals[name] = {
-				"addressed":false,
-				"value":null,
-				"text":'OK?'
-			}
-
-			//add input values
-			vm.inputs[name] = {};
-			vm.inputs[name].value = '';
-			vm.inputs[name].suggestion = '415';
-
 			//build fields hash
 			fieldsHash[name] = totalFields;
 
@@ -75,14 +60,7 @@ function recieptForm() {
 		});
 
 		//get suggested values
-		vm.inputs['Market'].suggestion = 'Surf City';
-		vm.inputs['Name'].suggestion = 'Ahmed';
-		vm.inputs['Gross'].suggestion = 415;
-		vm.inputs['Fee'].suggestion = 42;
-		vm.inputs['Pay'].suggestion = 83;
-		vm.inputs['Reciepts'].suggestion = 10;
-		vm.inputs['Bank'].suggestion = 60;
-		vm.inputs['Due'].suggestion = 220;
+		vm.inputs = vm.suggestions;
 
 		function unlockSubmitBtn() {
 			//
@@ -138,21 +116,6 @@ function recieptForm() {
 				};				
 			}
 
-			/*r.onloadend = function(e) {
-				var data = e.target.result;
-				
-				$log.info('got here');
-
-				//save the value to the variable
-				vm.inputs['Photo'] = {
-					src: 'Market_Reciept.jpg',
-					binary: data
-				}
-
-				$log.info('file loaded', vm.inputs['Photo']);
-			}
-			$log.info('got here');
-			r.readAsDataURL(file);*/
 		}
 
 		vm.refreshApprovals = function() {
@@ -249,10 +212,6 @@ function recieptForm() {
 
 			countApproved();
 
-			//notify the user
-			//$log.info('added a photo', vm.uploadedImage);
-
-			//accesssed through jquery so apply these changes
 			$scope.$apply();
 		}
 

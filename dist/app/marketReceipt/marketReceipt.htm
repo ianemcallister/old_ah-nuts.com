@@ -2,5 +2,7 @@
 	<!--navbar
 	<navbar></navbar>-->
 	<!--body-->
-	<reciept-form data='vm.data'></reciept-form>
+	<select-prefilled-form ng-if='!vm.showForm' data='vm.possibleMarkets'></select-prefilled-form>
+	<reciept-form ng-if='vm.showForm' data='vm.data' suggestions='vm.suggestions'></reciept-form>
+
 </div>

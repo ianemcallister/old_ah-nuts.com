@@ -31,6 +31,18 @@ app.use('/', function(req, res, next) {
 });
 
 //handle HTTP requests, for GET calls
+app.get('/db/form/:name/:status', function(req, res) {
+	var resource = {db: 'forms', form: req.params.name, status: req.params.status };
+	console.log("got this", resource);
+
+	api.collectResources(resource).then(function(response) {
+		res.status(200).send(response);
+	}).catch(function(error) {
+		res.status(406).send('Not Acceptable:'. error);
+	});
+
+});
+
 app.get('/assets/:name', function(req, res) {
 
 	console.log('got this');

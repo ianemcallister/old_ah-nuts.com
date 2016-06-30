@@ -41,6 +41,7 @@
     "browser-sync": "^2.11.1",
     "dateformat": "^1.0.12",
     "express": "^4.14.0",
+    "firebase": "^3.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.1.1",
     "gulp-jasmine-phantom": "^2.1.0",

@@ -2,10 +2,13 @@
 
 var mailCenter = require('./mailcenter.js');
 var dateFormat = require('dateformat');
+var ahNutsFirebase = require('./ahNutsFirebase');
 
+//define the form hash
 var formHash = {'marketReceipt':'Market Receipt'};
 
 var api = {
+	_allResources:_allResources,
 	_getCurrentTime:_getCurrentTime,
 	_getMarketTimesHash:_getMarketTimesHash,
 	_getEmployee:_getEmployee,
@@ -17,11 +20,26 @@ var api = {
 	_getMarketBank:_getMarketBank,
 	_buildMailSubject:_buildMailSubject,
 	_buildMailBody:_buildMailBody,
+	collectResources:collectResources,
 	supplyGuess:supplyGuess,
 	receiveForm:receiveForm,
 	test: test
 }
 
+function _allResources() {
+	return {
+		'forms': {
+			'market_receipts': {
+				'due': [
+					{db: 'forms', form: 'market_receipts', status: 'due'},
+					{db: 'forms', form: 'market_receipts', status: 'past_due'},
+					{db: 'locations'},
+					{db: 'employees'}
+				]
+			}
+		}
+	};
+}
 function _getCurrentTime() {
 	var newTime = new Date();
 	return { day: newTime.getDay(), mins: (newTime.getHours() * 60) + newTime.getMinutes() }
@@ -108,6 +126,45 @@ function _buildMailBody(type, data) {
 	});
 
 	return returnObject;
+}
+
+function collectResources(resource) {
+	var serverAPI = this;
+	var allPromises = [];
+
+	return new Promise(function(resolve, reject) {
+
+		//before anything can be downloaded, make sure the db is up to date
+		ahNutsFirebase._updateDB().then(function() {
+			//once everything has been updated, work on this request
+			//define the types of collections
+			var requiredResources = serverAPI._allResources();
+
+			//log to the user
+			console.log(resource);
+
+			//distinguish which resources are being collected
+			var requiredModels = requiredResources[resource.db][resource.form][resource.status];
+
+			//build promises
+			requiredModels.forEach(function(requirnments) {
+				allPromises.push(new Promise(function(resolve, reject) {
+					ahNutsFirebase.getDbData(requirnments).then(function(response) {
+						resolve(response);
+					}).catch(function(error) {
+						reject(error);
+					});
+				}));
+			});
+
+			resolve(Promise.all(allPromises));
+
+		}).catch(function(e) {
+			reject(e);
+		});
+
+	});
+
 }
 
 function supplyGuess(gps) {

@@ -4,7 +4,21 @@ var api = require('./api');
 
 //var guess = api.supplyGuess();
 
-fs.readFile('./dist/assets/image.jpg', function(err, data) {	
+var req = {
+	params: {
+		name: 'market_receipts',
+		status: 'due'
+	}
+}
+
+api.collectResources({db: 'forms', form: req.params.name, status: req.params.status }).then(function(response) {
+	console.log('good response:', response);
+}, function(error) {
+	console.log('error:', error);
+});
+
+
+/*fs.readFile('./dist/assets/image.jpg', function(err, data) {	
 	var submissionObject = { Market: 'Surf City',
 		Date: new Date(),
 		Name: 'Ahmed',
@@ -32,7 +46,7 @@ fs.readFile('./dist/assets/image.jpg', function(err, data) {
 		console.log('Error: ' + error);
 	});
 
-});
+});*/
 
 //console.log(guess);
 

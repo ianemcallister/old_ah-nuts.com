@@ -11,19 +11,22 @@ function backendSrvc($log, $http) {
 	var backendSrvc = {
 		_get:_get,
 		_post:_post,
+		_buildPossibleMarkets:_buildPossibleMarkets,
 		getFormData:getFormData,
+		getPossibleMarkets:getPossibleMarkets,
 		loadAllForms:loadAllForms,
+		getSuggestionData:getSuggestionData,
 		submitFormData:submitFormData
 	};
 
-	function _get(filename) {
+	function _get(dir, filename) {
 		var thisResponse = null;
 
 		return new Promise(function(resolve, reject) {
 
 			$http({
 				method: 'GET',
-				url: 'assets/' + filename
+				url: dir + filename
 			}).then(function successCallback(response) {
 				
 				resolve(response.data);
@@ -54,6 +57,15 @@ function backendSrvc($log, $http) {
 
 	}
 
+	function _buildPossibleMarkets(resources) {
+		var reportsDue = resources[0];
+		var reportsPastDue = resources[1];
+		var allLocations = resources[2];
+		var allEmployees = resources[3];
+
+		
+	}
+
 	function getFormData(form) {
 		var service = this;
 
@@ -66,7 +78,7 @@ function backendSrvc($log, $http) {
 			if(typeof service[form] !== 'undefined')
 				resolve(service[form]);
 			else { 
-				service._get(url).then(function(response) {
+				service._get('assets/', url).then(function(response) {
 					service[form] = response;
 					resolve(service[form]);
 				});
@@ -74,6 +86,24 @@ function backendSrvc($log, $http) {
 
 		});
 	
+	}
+
+	function getPossibleMarkets() {
+		var service = this;
+
+		return new Promise(function(resolve, reject) {
+			//collect the resources
+			service._get("/db/form/", 'market_receipts/due').then(function(response) {
+				//from the response build the returnable object
+				var possibleMarketsList = service._buildPossibleMarkets(response);
+				//return the possibleMarketsList
+				resolve(possibleMarketsList);
+			}).catch(function(error) {
+				reject(error);
+			});
+
+		});
+
 	}
 
 	function loadAllForms() {
@@ -87,12 +117,28 @@ function backendSrvc($log, $http) {
 		Object.keys(service.allForms).forEach(function(form) {
 			var url = service.allForms[form];
 
-			service._get(url).then(function(response) {
+			service._get('assets/', url).then(function(response) {
 				service[form] = response.data;
 			});
 
 		});
 
+	}
+
+	function getSuggestionData(params) {
+		//TODO TAKE THIS OUT LATER
+		console.log("got these", params);
+		//temporary suggestions
+		return {
+			'Market':'Surf City',
+			'Name':'Ahmed',
+			'Gross':415,
+			'Fee':42,
+			'Pay':83,
+			'Reciepts':10,
+			'Bank':60,
+			'Due':220
+		}
 	}
 
 	function submitFormData(data) {
