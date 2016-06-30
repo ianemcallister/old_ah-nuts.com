@@ -1,8 +1,28 @@
 <div class='container'>
 	<h3 style='text-align: center; padding-top: 60px;'>Which market did you work?</h3>
-	<ul style='list-style:none; text-align: center; padding-top: 20px; padding-left: 0px'>
-		<li ng-repeat='option in vm.data track by $index' style='padding-top: 10px' ng-click='vm.selectOption($index)'>
-			{{option}}
-		</li>
-	</ul>
+	
+	<div ng-if='vm.data.reports_due'>
+		<h4>Reports Due Today:</h4>
+		<ul style='list-style:none; text-align: center; padding-top: 4px; padding-left: 0px; padding-bottom:20px;'>
+			<li ng-repeat='option in vm.data.reports_due track by $index' 
+				style='padding-top: 10px'
+				class='btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12' 
+				ng-click='vm.selectOption($index)'>
+				{{option.name}}
+			</li>
+		</ul>	
+	</div>
+
+	<div ng-if='vm.data.reports_past_due'>
+		<h4 >Reports Past Due:</h4>
+		<ul style='list-style:none; text-align: center; padding-top: 5px; padding-left: 0px'>
+			<li ng-repeat='option in vm.data.reports_past_due track by $index' 
+				style='padding-top: 10px; margin-top: 5px;'
+				class='btn btn-warning col-xs-12 col-sm-12 col-md-12 col-lg-12' 
+				ng-click='vm.selectOption($index)'>
+				{{option.name}} - {{option.dueDate}}
+			</li>
+		</ul>	
+	</div>
+	
 </div>

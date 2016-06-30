@@ -58,12 +58,35 @@ function backendSrvc($log, $http) {
 	}
 
 	function _buildPossibleMarkets(resources) {
+		var returnObject = {};
 		var reportsDue = resources[0];
 		var reportsPastDue = resources[1];
 		var allLocations = resources[2];
 		var allEmployees = resources[3];
 
-		
+		//build the reports due
+		returnObject['reports_due'] = [];
+		Object.keys(reportsDue).forEach(function(key) {
+
+			returnObject.reports_due.push({
+				name: allLocations[reportsDue[key].market].name,
+				employee: (allEmployees[reportsDue[key].scheduled].first_name + ' ' + allEmployees[reportsDue[key].scheduled].last_name)
+			});
+
+		});
+
+		//build the reports past due
+		returnObject['reports_past_due'] = [];
+		Object.keys(reportsPastDue).forEach(function(key) {
+
+			returnObject.reports_past_due.push({
+				name: allLocations[reportsPastDue[key].market].name,
+				employee: (allEmployees[reportsPastDue[key].scheduled].first_name + ' ' + allEmployees[reportsPastDue[key].scheduled].last_name),
+				dueDate: (key.slice(4,6) + '/' + key.slice(6,8) + '/' + key.slice(2,4))
+			});
+		});
+
+		return returnObject
 	}
 
 	function getFormData(form) {
