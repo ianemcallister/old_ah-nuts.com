@@ -769,6 +769,8 @@ function backendSrvc($log, $http) {
 		var service = this;
 		//return service._placeholders('marketPossibilities');
 		return new Promise(function(resolve, reject) {
+			//TODO: TAKE THIS OUT LATER
+			resolve(service._placeholders('marketPossibilities'));
 			//collect the resources
 			service._get("/db/form/", 'market_receipts/due').then(function(response) {
 				//from the response build the returnable object
