@@ -16,6 +16,7 @@ if(typeof process.env.NODE_ENV == 'undefined') { //undefined means development
 	var MAIL_PASSWORD = process.env.AH_NUTS_MAIL_PASSWORD;
 }
 
+console.log('environment', environment);
 
 var mailCenter = {
 	sendEmail:sendEmail
