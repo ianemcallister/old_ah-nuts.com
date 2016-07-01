@@ -107,22 +107,28 @@ function _twentfyfourTime(time) {
 function _addToList(arrayOfLists) {
 	var returnArray = [];
 
-	//iterate through the lists
-	arrayOfLists.forEach(function(list) {
+	console.log('arrayOfLists', arrayOfLists);
 
-		//if list objects are also lists
-		if(typeof list == 'object') {
+	if(typeof arrayOfLists === 'object') {
 
-			//iterate over the list
-			list.forEach(function(item) {
+		//iterate through the lists
+		arrayOfLists.forEach(function(list) {
 
-				returnArray.push(item);
+			//if list objects are also lists
+			if(typeof list == 'object') {
 
-			});
+				//iterate over the list
+				list.forEach(function(item) {
 
-		} else returnArray.push(list);
+					returnArray.push(item);
 
-	});
+				});
+
+			} else returnArray.push(list);
+
+		});
+
+	}
 
 	return returnArray;
 }
@@ -193,14 +199,17 @@ function _updateDB() {
 					resolve();
 
 				}).catch(function(e) {
+					console.log('_updateSchedule error');
 					reject(e);
 				});
 
 			}).catch(function(e) {
+				console.log('_updateForms error');
 				reject(e);
 			});
 
 		}).catch(function(error) {
+			console.log('_getData error');
 			reject(error);
 		});
 
@@ -217,15 +226,18 @@ function _updateForms(scheduledEvents, currentDateTime) {
 
 		//get the current market Receipts
 		firebaseDB._getData('/forms/market_receipts').then(function(pendingReceipts) {
-		
+			
 			//check if the previously due are now past due
 			var receiptChanges = firebaseDB._checkPastDueMarketReceipts(pendingReceipts, currentDateTime)
-			
+			console.log('receiptChanges', receiptChanges);
+
 			//add any scheduled events that are now due or past due
 			var recieptAdditions = firebaseDB._addNewMarketReceiptPrompts(scheduledEvents, currentDateTime);
+			console.log('recieptAdditions', recieptAdditions);
 
 			//add all the changes to a master list
 			var recordsToMove = firebaseDB._addToList([receiptChanges, recieptAdditions]);
+			console.log('recordsToMove', recordsToMove);
 
 			//turn all the moves into promises
 			var movePromises = firebaseDB._jobsToPromises(recordsToMove);
@@ -237,10 +249,12 @@ function _updateForms(scheduledEvents, currentDateTime) {
 			Promise.all(movePromises).then(function() {
 				resolve();
 			}).catch(function(e) {
+				console.log('All Promises error');
 				reject(e);
 			});
 
 		}).catch(function(e) {
+			console.log('_getData error');
 			reject(e);
 		});
 
@@ -313,19 +327,20 @@ function _jobsToPromises(listOfJobs) {
 	var allPromises = [];
 	var firebaseDB = this;
 
-	
-	listOfJobs.forEach(function(job) {
+	if(typeof listOfJobs == 'object') {
+		listOfJobs.forEach(function(job) {
 
-		allPromises.push(new Promise(function(resolve, reject) {
-			
-			firebaseDB._moveRecord(job).then(function(response) {
-				resolve(response);
-			}).catch(function(error) {
-				reject(error);
-			});
+			allPromises.push(new Promise(function(resolve, reject) {
+				
+				firebaseDB._moveRecord(job).then(function(response) {
+					resolve(response);
+				}).catch(function(error) {
+					reject(error);
+				});
 
-		}));
-	});
+			}));
+		});
+	}
 
 	return allPromises;
 }
@@ -370,7 +385,7 @@ function _checkPastDueMarketReceipts(pendingReceipts, currentDateTime) {
 		
 		return dueReceiptsToPastDue;
 		
-	} else return null;
+	} else return [];
 
 }
 
@@ -378,34 +393,37 @@ function _addNewMarketReceiptPrompts(scheduledEvents, currentDateTime) {
 	var firebaseDB = this;
 	var scheduledEventsNeedReciepts = [];
 	console.log('these are the scheduledEvents',scheduledEvents );
-	//check each scheduled event to see if new events are due or Past due
-	Object.keys(scheduledEvents).forEach(function(key) {
-		
-		//check the event status
-		var status = firebaseDB._checkEventStatus(key, scheduledEvents[key].times.end, currentDateTime);
-		console.log(key, status);
-		//decide what to do 
-		if(status == 'isDue') {
-			//ad to the list to move
-			scheduledEventsNeedReciepts.push({
-				from: 'schedule/future',
-				to: 'forms/market_receipts/due',
-				key: key,
-				object: scheduledEvents[key]
-			});
-		} else if (status == 'isPastDue') {
-			//add to the list to move
-			scheduledEventsNeedReciepts.push({
-				from: 'schedule/future',
-				to: 'forms/market_receipts/past_due',
-				key: key,
-				object: scheduledEvents[key]
-			});
-		} else {
-			//nothing to do
-		}
+	
+	if(typeof scheduledEvents == 'object') {
+		//check each scheduled event to see if new events are due or Past due
+		Object.keys(scheduledEvents).forEach(function(key) {
+			
+			//check the event status
+			var status = firebaseDB._checkEventStatus(key, scheduledEvents[key].times.end, currentDateTime);
+			console.log(key, status);
+			//decide what to do 
+			if(status == 'isDue') {
+				//ad to the list to move
+				scheduledEventsNeedReciepts.push({
+					from: 'schedule/future',
+					to: 'forms/market_receipts/due',
+					key: key,
+					object: scheduledEvents[key]
+				});
+			} else if (status == 'isPastDue') {
+				//add to the list to move
+				scheduledEventsNeedReciepts.push({
+					from: 'schedule/future',
+					to: 'forms/market_receipts/past_due',
+					key: key,
+					object: scheduledEvents[key]
+				});
+			} else {
+				//nothing to do
+			}
 
-	});
+		});
+	}
 
 	return scheduledEventsNeedReciepts;
 }
@@ -431,12 +449,13 @@ function getFormData(formRequest) {
 			var values = snapshot.val();
 			var returnArray = [];
 
-			Object.keys(values).forEach(function(key) {
-				
-				returnArray.push(values[key]);
-			})
-
-			//then 
+			if(typeof values == 'object') {
+				Object.keys(values).forEach(function(key) {
+					
+					returnArray.push(values[key]);
+				});
+			}
+			
 
 			resolve(returnArray);
 		}, function(error) {

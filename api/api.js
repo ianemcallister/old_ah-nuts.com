@@ -132,6 +132,7 @@ function collectResources(resource) {
 	var serverAPI = this;
 	var allPromises = [];
 
+	console.log('in the collectResources');
 	return new Promise(function(resolve, reject) {
 
 		//before anything can be downloaded, make sure the db is up to date
@@ -141,11 +142,12 @@ function collectResources(resource) {
 			var requiredResources = serverAPI._allResources();
 
 			//log to the user
-			console.log(resource);
+			console.log('got this resource', resource);
 
 			//distinguish which resources are being collected
 			var requiredModels = requiredResources[resource.db][resource.form][resource.status];
 
+			console.log('requiredModels', requiredModels);
 			//build promises
 			requiredModels.forEach(function(requirnments) {
 				allPromises.push(new Promise(function(resolve, reject) {
@@ -160,6 +162,7 @@ function collectResources(resource) {
 			resolve(Promise.all(allPromises));
 
 		}).catch(function(e) {
+			console.log('the error:', e);
 			reject(e);
 		});
 

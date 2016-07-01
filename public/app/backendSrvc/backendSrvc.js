@@ -683,8 +683,8 @@ function backendSrvc($log, $http) {
 				
 				resolve(response.data);
 				
-			}, function errorCallback(response) {
-				console.log('Error:',response);
+			}, function errorCallback(error) {
+				reject(error);
 			});
 
 		});
@@ -716,28 +716,35 @@ function backendSrvc($log, $http) {
 		var allLocations = resources[2];
 		var allEmployees = resources[3];
 
-		//build the reports due
-		returnObject['reports_due'] = [];
-		Object.keys(reportsDue).forEach(function(key) {
+		console.log('got to _buildPossibleMarkets', resources, reportsDue !== null, reportsPastDue !== null);
 
-			returnObject.reports_due.push({
-				name: allLocations[reportsDue[key].market].name,
-				employee: (allEmployees[reportsDue[key].scheduled].first_name + ' ' + allEmployees[reportsDue[key].scheduled].last_name)
+		if(reportsDue !== null) {
+			//build the reports due
+			returnObject['reports_due'] = [];
+			Object.keys(reportsDue).forEach(function(key) {
+
+				returnObject.reports_due.push({
+					name: allLocations[reportsDue[key].market].name,
+					employee: (allEmployees[reportsDue[key].scheduled].first_name + ' ' + allEmployees[reportsDue[key].scheduled].last_name)
+				});
+
 			});
+		}
 
-		});
+		if(reportsPastDue !== null) {
+			//build the reports past due
+			returnObject['reports_past_due'] = [];
+			Object.keys(reportsPastDue).forEach(function(key) {
 
-		//build the reports past due
-		returnObject['reports_past_due'] = [];
-		Object.keys(reportsPastDue).forEach(function(key) {
-
-			returnObject.reports_past_due.push({
-				name: allLocations[reportsPastDue[key].market].name,
-				employee: (allEmployees[reportsPastDue[key].scheduled].first_name + ' ' + allEmployees[reportsPastDue[key].scheduled].last_name),
-				dueDate: (key.slice(4,6) + '/' + key.slice(6,8) + '/' + key.slice(2,4))
+				returnObject.reports_past_due.push({
+					name: allLocations[reportsPastDue[key].market].name,
+					employee: (allEmployees[reportsPastDue[key].scheduled].first_name + ' ' + allEmployees[reportsPastDue[key].scheduled].last_name),
+					dueDate: (key.slice(4,6) + '/' + key.slice(6,8) + '/' + key.slice(2,4))
+				});
 			});
-		});
+		}
 
+		console.log('sending this back', returnObject);
 		return returnObject
 	}
 
@@ -758,6 +765,8 @@ function backendSrvc($log, $http) {
 					service[form] = response;
 					$log.info('service[form]',service[form]);
 					resolve(service[form]);
+				}).catch(function(error) {
+					rej(error);
 				});
 			}
 
@@ -767,16 +776,19 @@ function backendSrvc($log, $http) {
 
 	function getPossibleMarkets() {
 		var service = this;
+		console.log('got here, getPossibleMarkets');
 		//return service._placeholders('marketPossibilities');
 		return new Promise(function(resolve, reject) {
 			//TODO: TAKE THIS OUT LATER
 			//resolve(service._placeholders('marketPossibilities'));
+			console.log('going to getPossibleMarkets');
 			//collect the resources
-			service._get("/db/form/", 'market_receipts/due').then(function(response) {
+			service._get("db/form/", 'market_receipts/due').then(function(response) {
+				console.log("getPossibleMarkets", response);
 				//from the response build the returnable object
 				var possibleMarketsList = service._buildPossibleMarkets(response);
 				//return the possibleMarketsList
-				$log.info("possibleMarketsList", possibleMarketsList);
+				console.log("possibleMarketsList", possibleMarketsList);
 				resolve(possibleMarketsList);
 			}).catch(function(error) {
 				reject(error);

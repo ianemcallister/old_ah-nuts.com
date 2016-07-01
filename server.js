@@ -36,7 +36,7 @@ app.get('/db/form/:name/:status', function(req, res) {
 	console.log("got this", resource);
 
 	//TODO: TAKE THIS OUT LATER
-	res.status(200).send({
+	/*res.status(200).send({
 				reports_due: [
 					{
 						employee:"Kevin Luna",
@@ -50,9 +50,10 @@ app.get('/db/form/:name/:status', function(req, res) {
 						name:"Bixby Park - Tuesday"
 					}
 				]
-			});
+			});*/
 
 	api.collectResources(resource).then(function(response) {
+		console.log('sending response back');
 		res.status(200).send(response);
 	}).catch(function(error) {
 		res.status(406).send('Not Acceptable:'. error);
