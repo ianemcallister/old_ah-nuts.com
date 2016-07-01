@@ -38,6 +38,7 @@ firebase.initializeApp({
 
 var rootParent = firebase.database().ref();
 
+//TODO: TAKE THIS OUT LATER
 rootParent.on("value", function(snapshot) {
 	var values = snapshot.val();
 	console.log(values);
